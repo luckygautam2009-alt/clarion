@@ -6,7 +6,7 @@
     "ip": "185.220.101.5",
     "location": "St. Petersburg, Russia",
     "device": "Linux Chrome",
-    "timestamp": "2026-09-22T03:14:00Z",
+    "timestamp": "2026-10-22T03:14:00.000Z",
     "flagged": true
   },
   {
@@ -16,7 +16,7 @@
     "ip": "185.220.101.5",
     "location": "St. Petersburg, Russia",
     "device": "Linux Chrome",
-    "timestamp": "2026-09-22T03:15:20Z",
+    "timestamp": "2026-10-22T03:15:00.000Z",
     "flagged": true,
     "alert": "Unrecognized device and geolocation"
   },
@@ -27,7 +27,7 @@
     "ip": "185.220.101.5",
     "location": "St. Petersburg, Russia",
     "device": "Linux Chrome",
-    "timestamp": "2026-09-22T03:17:00Z",
+    "timestamp": "2026-10-22T03:17:00.000Z",
     "flagged": true
   }
 ]

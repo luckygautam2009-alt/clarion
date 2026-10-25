@@ -36,7 +36,7 @@ import { useAuth } from '../auth/AuthContext';
 import { goTo } from '../auth/nav';
 import ChatWidget from '../components/customer/ChatWidget';
 import EditProfileModal from '../components/customer/EditProfileModal';
-import { getProductImage, PRODUCT_IMAGES } from '../data/productImages';
+import { getServiceEmoji } from '../data/serviceIcons';
 
 const inr = (n) => `₹${Number(n || 0).toLocaleString('en-IN')}`;
 
@@ -774,20 +774,7 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
                         {/* Order Header: Thumbnail, ID, Product, Amount, Status Badge */}
                         <div className="flex flex-wrap items-start justify-between gap-3">
                           <div className="flex items-center gap-3">
-                            {(() => {
-                              const pName = (o.product || '').toLowerCase();
-                              const matchedKey = Object.keys(PRODUCT_IMAGES).find((k) =>
-                                pName.includes(k)
-                              );
-                              const orderImg = o.image || getProductImage(matchedKey || o.productId || 'earbuds');
-                              return (
-                                <img
-                                  src={orderImg}
-                                  alt={o.product}
-                                  className="w-13 h-13 rounded-xl object-cover border border-border shadow-xs shrink-0"
-                                />
-                              );
-                            })()}
+                            <span className="w-13 h-13 shrink-0 rounded-xl bg-[#E6F4FD] border border-border flex items-center justify-center text-2xl">{getServiceEmoji(o.product)}</span>
                             <div>
                               <div className="flex items-center gap-2 flex-wrap">
                                 <span className="font-mono font-extrabold text-primary text-sm sm:text-base">

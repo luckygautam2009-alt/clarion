@@ -3,45 +3,45 @@
     "id": "PAY123",
     "orderId": "ORDER456",
     "customerId": "CUST001",
-    "amount": 1499,
+    "amount": 1850,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "failed",
-    "gatewayRef": "gw_razor_123",
-    "timestamp": "2026-09-10T14:22:00Z"
+    "gatewayRef": "upi_utr_410012345123",
+    "timestamp": "2026-10-22T14:22:00.000Z"
   },
   {
     "id": "PAY124",
     "orderId": "ORDER456",
     "customerId": "CUST001",
-    "amount": 1499,
+    "amount": 1850,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_razor_124",
-    "timestamp": "2026-09-10T14:23:10Z"
+    "gatewayRef": "upi_utr_410012345124",
+    "timestamp": "2026-10-22T14:23:00.000Z"
   },
   {
     "id": "PAY789",
     "orderId": "ORDER789",
     "customerId": "CUST002",
-    "amount": 3499,
+    "amount": 5400,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_upi_789",
-    "timestamp": "2026-09-18T08:00:00Z"
+    "gatewayRef": "upi_utr_410012345789",
+    "timestamp": "2026-10-19T08:00:00.000Z"
   },
   {
     "id": "PAY790",
     "orderId": "ORDER790",
     "customerId": "CUST002",
-    "amount": 699,
+    "amount": 600,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_upi_790",
-    "timestamp": "2026-09-19T11:45:00Z"
+    "gatewayRef": "upi_utr_410012345790",
+    "timestamp": "2026-10-20T11:45:00.000Z"
   },
   {
     "id": "PAY201",
@@ -51,51 +51,51 @@
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_card_201",
-    "timestamp": "2026-09-05T10:15:00Z"
+    "gatewayRef": "upi_utr_410012345201",
+    "timestamp": "2026-10-13T10:15:00.000Z"
   },
   {
     "id": "PAY202",
     "orderId": "ORDER102",
     "customerId": "CUST003",
-    "amount": 4999,
+    "amount": 850,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_card_202",
-    "timestamp": "2026-08-20T09:45:00Z"
+    "gatewayRef": "card_utr_410012345202",
+    "timestamp": "2026-09-30T09:45:00.000Z"
   },
   {
     "id": "PAY301",
     "orderId": "ORDER202",
     "customerId": "CUST004",
-    "amount": 899,
+    "amount": 799,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_netbank_301",
-    "timestamp": "2026-09-20T09:30:00Z"
+    "gatewayRef": "netbank_utr_410012345301",
+    "timestamp": "2026-10-20T09:30:00.000Z"
   },
   {
     "id": "PAY302",
     "orderId": "ORDER204",
     "customerId": "CUST004",
-    "amount": 1799,
+    "amount": 650,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_card_302",
-    "timestamp": "2026-09-21T15:00:00Z"
+    "gatewayRef": "upi_utr_410098765432",
+    "timestamp": "2026-10-21T15:00:00.000Z"
   },
   {
     "id": "PAY303",
     "orderId": "ORDER205",
     "customerId": "CUST004",
-    "amount": 2999,
+    "amount": 5000,
     "status": "success",
     "gatewayStatus": "success",
     "localStatus": "success",
-    "gatewayRef": "gw_card_303",
-    "timestamp": "2026-09-22T10:10:00Z"
+    "gatewayRef": "upi_utr_410011223344",
+    "timestamp": "2026-10-20T10:10:00.000Z"
   }
 ]

@@ -5,19 +5,19 @@
     "customerId": "CUST003",
     "amount": 2199,
     "status": "pending",
-    "initiatedAt": "2026-09-13T10:00:00Z",
-    "reason": "Return item received at warehouse, awaiting bank settlement",
+    "initiatedAt": "2026-10-21T10:00:00.000Z",
+    "reason": "Merchant accepted the refund, awaiting bank settlement",
     "gatewayRef": "rf_hdfc_101"
   },
   {
     "id": "REF789",
     "orderId": "ORDER789",
     "customerId": "CUST002",
-    "amount": 3499,
+    "amount": 5400,
     "status": "completed",
-    "initiatedAt": "2026-09-18T09:00:00Z",
-    "completedAt": "2026-09-18T10:30:00Z",
-    "reason": "Order cancelled before dispatch",
+    "initiatedAt": "2026-10-19T09:00:00.000Z",
+    "completedAt": "2026-10-19T10:30:00.000Z",
+    "reason": "Booking cancelled, refund credited to source account",
     "gatewayRef": "rf_upi_789"
   }
 ]

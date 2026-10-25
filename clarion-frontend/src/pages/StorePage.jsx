@@ -21,6 +21,7 @@ const STATUS = {
   pending: { label: 'Failed', cls: 'text-alert bg-alert-dim' },
   delivered: { label: 'Successful', cls: 'text-verified bg-verified-dim' },
   cancelled: { label: 'Cancelled', cls: 'text-muted bg-ink-inset' },
+  returned: { label: 'Refund initiated', cls: 'text-[#0B4DA8] bg-[#00BAF2]/15' },
 };
 
 const CATEGORY_ICONS = {
