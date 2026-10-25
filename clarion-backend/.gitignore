@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.log
+clarion.db
+clarion.db-shm
+clarion.db-wal
+reference_card.json

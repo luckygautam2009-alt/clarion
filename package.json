@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd clarion-backend && npm run dev",
+    "dev:frontend": "cd clarion-frontend && npm run dev",
+    "start": "cd clarion-backend && npm start",
+    "install:all": "cd clarion-backend && npm install && cd ../clarion-frontend && npm install"
+  },
+  "dependencies": {
+    "multer": "^2.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

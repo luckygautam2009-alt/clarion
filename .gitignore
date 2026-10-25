@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment variables & secrets
+.env
+*.env
+*/.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+dist-ssr/
+*/dist/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# System & IDE files
+.DS_Store
+*/.DS_Store
+.vscode/
+.idea/
+
+# Database & Runtime persistence
+*.db
+*.db-*
+reference_card.json
+*/reference_card.json
+test_*.jpg
+*/test_*.jpg
+*.zip
