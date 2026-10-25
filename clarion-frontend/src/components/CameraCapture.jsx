@@ -90,7 +90,7 @@ export default function CameraCapture({ onCapture, capturedFile }) {
             type="button"
             onClick={handleCapture}
             disabled={!!cameraError}
-            className="flex-1 flex items-center justify-center gap-2 bg-amber text-ink font-bold px-4 py-2.5 rounded-lg text-sm disabled:opacity-50 hover:bg-amber-light transition-colors cursor-pointer"
+            className="flex-1 flex items-center justify-center gap-2 bg-amber text-ink font-bold px-4 py-2.5 rounded-lg text-sm disabled:opacity-50 hover:bg-red-light transition-colors cursor-pointer"
           >
             <Camera className="w-4 h-4" /> Capture ID Card
           </button>

@@ -36,3 +36,4 @@ reference_card.json
 test_*.jpg
 */test_*.jpg
 *.zip
+.kilo/

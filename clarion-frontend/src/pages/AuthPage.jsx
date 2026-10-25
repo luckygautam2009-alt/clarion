@@ -49,7 +49,7 @@ export default function AuthPage() {
         <div className="w-full max-w-md rounded-2xl border border-border-strong bg-ink-light p-7 sm:p-8 shadow-xs">
           <div className="mb-6">
             <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-8 h-8 rounded-xl bg-amber-dim border border-amber/40 flex items-center justify-center p-1.5 overflow-hidden shadow-2xs">
+              <div className="w-8 h-8 rounded-xl bg-red-dim border border-amber/40 flex items-center justify-center p-1.5 overflow-hidden shadow-2xs">
                 <img src="/favicon.png" alt="CLARION" className="w-full h-full object-contain" />
               </div>
               <span className="font-display text-2xl font-bold tracking-tight text-paper">CLARION</span>

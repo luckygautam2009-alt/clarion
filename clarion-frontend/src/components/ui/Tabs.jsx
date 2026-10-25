@@ -27,7 +27,7 @@ export default function Tabs({
             onClick={() => onChange?.(tab.id)}
             className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-[13px] font-bold transition-all duration-150 cursor-pointer select-none ${
               isActive
-                ? 'bg-white dark:bg-ink-light text-[#2F6F68] dark:text-[#5F9E96] shadow-xs border border-border-strong neon-edge-teal'
+                ? 'bg-white dark:bg-ink-light text-[#002E6E] dark:text-[#5F9E96] shadow-xs border border-border-strong neon-edge-teal'
                 : 'text-muted hover:text-paper hover:bg-ink-light/50 border border-transparent'
             }`}
           >
@@ -37,7 +37,7 @@ export default function Tabs({
               <span
                 className={`ml-1 px-1.5 py-0.5 rounded-full text-[11px] font-mono font-bold ${
                   isActive
-                    ? 'bg-[#2F6F68]/15 text-[#2F6F68] dark:text-[#5F9E96]'
+                    ? 'bg-[#002E6E]/15 text-[#002E6E] dark:text-[#5F9E96]'
                     : 'bg-ink-lighter text-muted'
                 }`}
               >

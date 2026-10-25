@@ -89,7 +89,7 @@ export default function ChatWidget({ customer, orders, open, setOpen, preset, on
 
   const first = customer.name.split(' ')[0];
   const input = 'w-full bg-ink-lighter border border-border-strong rounded-lg px-3 py-2 text-sm text-paper focus:outline-none focus:ring-2 focus:ring-amber/50';
-  const choice = 'w-full text-left text-sm font-semibold px-3.5 py-2.5 rounded-xl border border-amber/40 text-amber bg-amber-dim hover:bg-amber/20 cursor-pointer';
+  const choice = 'w-full text-left text-sm font-semibold px-3.5 py-2.5 rounded-xl border border-amber/40 text-amber bg-red-dim hover:bg-amber/20 cursor-pointer';
 
   return (
     <>
@@ -102,7 +102,7 @@ export default function ChatWidget({ customer, orders, open, setOpen, preset, on
 
       {open && (
         <div className="fixed bottom-6 right-6 z-50 w-[22rem] max-w-[calc(100vw-2rem)] h-[34rem] max-h-[calc(100vh-3rem)] flex flex-col rounded-2xl border border-border-strong bg-ink-light shadow-xl overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-amber-dim">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-red-dim">
             <div className="flex items-center gap-2.5">
               <span className="text-2xl">{'\u{1F916}'}</span>
               <div>

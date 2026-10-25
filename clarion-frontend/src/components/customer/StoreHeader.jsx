@@ -1,4 +1,4 @@
-import { FileText, ShoppingBag, ShieldCheck, Package } from 'lucide-react';
+import { FileText, Wallet, ShieldCheck, Receipt } from 'lucide-react';
 import { goTo } from '../../auth/nav';
 import NotificationBell from './NotificationBell';
 import ProfileMenu from './ProfileMenu';
@@ -13,7 +13,7 @@ export default function StoreHeader({ customer, active, actionNeeded = 0, onLogo
         onClick={() => goTo(path)}
         className={`flex items-center gap-2 text-sm px-3.5 py-2 rounded-xl transition-all duration-150 cursor-pointer border select-none ${
           isActive
-            ? 'bg-[#3B6260] text-white border border-[#2F6F68]/70 neon-edge-teal shadow-[0_0_12px_rgba(47,111,104,0.35)] font-bold'
+            ? 'bg-[#0A4AA0] text-white border border-[#002E6E]/70 neon-edge-teal shadow-[0_0_12px_rgba(0,186,242,0.35)] font-bold'
             : 'text-paper/80 hover:text-paper hover:bg-ink-lighter font-semibold border-transparent'
         }`}
       >
@@ -38,22 +38,22 @@ export default function StoreHeader({ customer, active, actionNeeded = 0, onLogo
           <button
             type="button"
             onClick={() => goTo('/store')}
-            className="flex items-center gap-3 cursor-pointer shrink-0 focus-visible:outline-2 focus-visible:outline-[#2F6F68] focus-visible:outline-offset-2 rounded-xl"
-            title="CLARION Store"
+            className="flex items-center gap-3 cursor-pointer shrink-0 focus-visible:outline-2 focus-visible:outline-[#002E6E] focus-visible:outline-offset-2 rounded-xl"
+            title="CLARION Pay"
           >
-            <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center p-1.5 overflow-hidden shadow-xs">
-              <img src="/favicon.png" alt="CLARION" className="w-full h-full object-contain" />
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center overflow-hidden shadow-xs">
+              <img src="/clarion-logo.svg" alt="CLARION" className="w-full h-full object-contain" />
             </div>
             <div className="flex items-center gap-2">
               <span className="font-display text-xl font-extrabold tracking-tight text-paper">CLARION</span>
               <span className="text-border-strong text-sm select-none">/</span>
-              <span className="text-xs sm:text-sm text-paper-dim dark:text-muted font-bold">Store</span>
+              <span className="text-xs sm:text-sm text-paper-dim dark:text-muted font-bold">Pay</span>
             </div>
           </button>
 
           <nav className="flex items-center gap-1 sm:gap-1.5">
-            {link('store', 'Store', '/store', ShoppingBag, 0)}
-            {link('orders', 'My orders', '/orders', Package, 0)}
+            {link("store", "Pay", "/store", Wallet, 0)}
+            {link("orders", "Transactions", "/orders", Receipt, 0)}
             {link('complaints', 'My complaints', '/complaints', FileText, actionNeeded)}
           </nav>
         </div>

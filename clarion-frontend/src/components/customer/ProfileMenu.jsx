@@ -73,7 +73,7 @@ export default function ProfileMenu({ customer, onLogout }) {
           <div className="p-4 flex items-center gap-3.5 border-b border-border bg-ink-inset/40">
             <div className="relative shrink-0">
               <Avatar src={avatar} name={customer.name} size="lg" />
-              <label title="Change photo" className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#2F6F68] hover:bg-[#265B55] text-white flex items-center justify-center cursor-pointer shadow-sm transition-colors border-2 border-white dark:border-ink-light">
+              <label title="Change photo" className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#002E6E] hover:bg-[#001F4D] text-white flex items-center justify-center cursor-pointer shadow-sm transition-colors border-2 border-white dark:border-ink-light">
                 <Camera className="w-3.5 h-3.5" />
                 <input type="file" accept="image/*" className="hidden" onChange={onPick} disabled={busy} />
               </label>
@@ -137,7 +137,7 @@ export default function ProfileMenu({ customer, onLogout }) {
               className="w-full flex items-center gap-3 px-4.5 py-2.5 text-sm font-semibold text-paper hover:bg-ink-lighter transition-colors cursor-pointer"
             >
               <Package className="w-4 h-4 text-amber shrink-0" />
-              <span>My orders</span>
+              <span>Transactions</span>
             </button>
             <button
               type="button"

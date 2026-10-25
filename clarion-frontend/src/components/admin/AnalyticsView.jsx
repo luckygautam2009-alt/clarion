@@ -4,11 +4,11 @@ import { getAnalytics, getRiskBoard } from '../../api/client';
 
 const inr = (n) => `₹${Number(n || 0).toLocaleString('en-IN')}`;
 const DEC = {
-  AUTO_RESOLVE: { label: 'Auto', color: '#2F6F68' },
-  CUSTOMER_CONFIRM: { label: 'Confirm', color: '#C58B4B' },
+  AUTO_RESOLVE: { label: 'Auto', color: '#002E6E' },
+  CUSTOMER_CONFIRM: { label: 'Confirm', color: '#00BAF2' },
   HUMAN_ESCALATION: { label: 'Escalated', color: '#C4554D' },
 };
-const LVL = { LOW: '#2F6F68', MEDIUM: '#C58B4B', HIGH: '#C4554D' };
+const LVL = { LOW: '#002E6E', MEDIUM: '#00BAF2', HIGH: '#C4554D' };
 
 function Kpi({ label, value, sub, color }) {
   return (
@@ -72,7 +72,7 @@ export default function AnalyticsView({ adminPassword }) {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
-        <Kpi label="Auto-resolve rate" value={`${a.rates.autoResolvePct}%`} sub={`${t.autoResolved} of ${t.decisions} cases`} color="#2F6F68" />
+        <Kpi label="Auto-resolve rate" value={`${a.rates.autoResolvePct}%`} sub={`${t.autoResolved} of ${t.decisions} cases`} color="#002E6E" />
         <Kpi label="Escalation rate" value={`${a.rates.escalationPct}%`} sub={`${t.humanEscalation} sent to humans`} color="#C4554D" />
         <Kpi label="Avg confidence" value={`${a.avgConfidence}%`} sub="across all decisions" />
         <Kpi label="Refunds initiated" value={a.actions.refundsInitiated} sub={`${inr(a.actions.refundValueInr)} · ${a.actions.refundsCancelledByOverride} cancelled by admin`} />
@@ -81,7 +81,7 @@ export default function AnalyticsView({ adminPassword }) {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
         <Kpi label="High-risk escalations" value={a.fraudSignals.highRiskEscalations} sub="blocked by risk score" color="#C4554D" />
         <Kpi label="Image-reuse hits" value={a.fraudSignals.imageReuseHits} sub={`of ${a.fraudSignals.photoClaims} photo claims`} color="#C4554D" />
-        <Kpi label="Photo auto-resolved" value={a.fraudSignals.photoAutoResolved} sub="damage verified by evidence" color="#2F6F68" />
+        <Kpi label="Photo auto-resolved" value={a.fraudSignals.photoAutoResolved} sub="damage verified by evidence" color="#002E6E" />
         <Kpi label="Admin overrides" value={a.overrides.total} sub={`${a.overrides.undo} undo · ${a.overrides.escalate} escalate · ${a.overrides.undoRateOfAutoResolvePct}% of auto-resolves undone`} />
       </div>
 

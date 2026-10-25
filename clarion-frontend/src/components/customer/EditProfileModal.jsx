@@ -210,7 +210,7 @@ export default function EditProfileModal({ open, onClose, customer }) {
             <button
               type="submit"
               disabled={busy}
-              className="px-5 py-2 rounded-xl bg-primary hover:bg-[#265B55] text-white text-xs font-bold cursor-pointer transition-all shadow-xs neon-glow-teal active:scale-[0.98] disabled:opacity-50"
+              className="px-5 py-2 rounded-xl bg-primary hover:bg-[#001F4D] text-white text-xs font-bold cursor-pointer transition-all shadow-xs neon-glow-teal active:scale-[0.98] disabled:opacity-50"
             >
               {busy ? 'Saving details…' : 'Save Details'}
             </button>

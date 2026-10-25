@@ -32,8 +32,8 @@ function renderStatusBadge(status) {
 
   if (s === 'delivered' || s === 'success' || s === 'completed' || s === 'resolved') {
     return (
-      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+        <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
         <span className="capitalize">{String(status)}</span>
       </span>
     );
@@ -41,7 +41,7 @@ function renderStatusBadge(status) {
 
   if (s === 'gold') {
     return (
-      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/25">
+      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-red-500/10 text-red-700 dark:text-red-400 border border-red-500/25">
         <Crown className="w-3 h-3 text-amber" />
         <span>Gold</span>
       </span>
@@ -76,7 +76,7 @@ function renderStatusBadge(status) {
 
   if (s === 'in_transit' || s === 'processing' || s === 'pending' || s === 'open') {
     return (
-      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-red-500/10 text-red-700 dark:text-red-400 border border-red-500/20">
         <span className="w-1.5 h-1.5 rounded-full bg-amber" />
         <span className="capitalize">{String(status).replace('_', ' ')}</span>
       </span>
@@ -191,7 +191,7 @@ export default function DataTable({ activeTable, data, searchQuery = '', setSear
               {filteredRows.map((row, idx) => (
                 <tr
                   key={idx}
-                  className="hover:bg-[#2F6F68]/5 transition-colors"
+                  className="hover:bg-[#002E6E]/5 transition-colors"
                 >
                   {columns.map((col) => {
                     const val = row[col];

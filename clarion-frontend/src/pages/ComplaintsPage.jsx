@@ -10,7 +10,7 @@ const STEPS = ['Registered', 'Under review', 'Resolved'];
 
 function stepFor(status) {
   if (status === 'registered') return { current: 0, tone: 'text-muted border-border-strong bg-ink-lighter', label: 'Registered' };
-  if (status === 'in_review') return { current: 1, tone: 'text-amber border-amber/40 bg-amber-dim', label: 'Under review' };
+  if (status === 'in_review') return { current: 1, tone: 'text-amber border-amber/40 bg-red-dim', label: 'Under review' };
   if (status === 'needs_info') return { current: 1, tone: 'text-alert border-alert/40 bg-alert-dim', label: 'More information needed' };
   if (status === 'awaiting_you') return { current: 1, tone: 'text-alert border-alert/40 bg-alert-dim', label: 'Action needed' };
   if (status === 'answered') return { current: 2, tone: 'text-verified border-verified/40 bg-verified-dim', label: 'Answered' };
@@ -169,7 +169,7 @@ export default function ComplaintsPage() {
                 {done[c.id] && <p className="mt-3 flex items-center gap-2 text-sm font-semibold text-verified"><Check className="w-4 h-4" /> {done[c.id]}</p>}
 
                 {c.status === 'awaiting_you' && c.proposal && (
-                  <div className="mt-3 rounded-lg border border-amber/40 bg-amber-dim p-3">
+                  <div className="mt-3 rounded-lg border border-amber/40 bg-red-dim p-3">
                     <p className="text-sm text-paper mb-2.5">{c.proposal.summary}</p>
                     <div className="flex flex-wrap gap-2">
                       {c.proposal.options.map((o) => (

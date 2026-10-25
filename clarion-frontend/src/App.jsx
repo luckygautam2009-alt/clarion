@@ -108,7 +108,7 @@ export default function App() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-dim border border-amber/40 flex items-center justify-center shadow-xs overflow-hidden p-1.5">
+            <div className="w-10 h-10 rounded-xl bg-red-dim border border-amber/40 flex items-center justify-center shadow-xs overflow-hidden p-1.5">
               <img src="/favicon.png" alt="CLARION Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex items-center gap-2.5">
@@ -163,7 +163,7 @@ export default function App() {
             >
               {theme === 'dark' ? (
                 <>
-                  <Sun className="w-4 h-4 text-amber-light shrink-0" />
+                  <Sun className="w-4 h-4 text-red-light shrink-0" />
                   <span className="hidden sm:inline">Light</span>
                 </>
               ) : (
@@ -175,8 +175,8 @@ export default function App() {
             </button>
 
             <div className="flex items-center gap-2 text-xs px-3 py-2 rounded-xl bg-white dark:bg-ink-light/80 border border-border-strong shadow-2xs" title="Backend service connected">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 neon-live-pulse" />
-              <span className="hidden sm:inline font-bold text-emerald-600 dark:text-emerald-400">Online</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-sky-500 neon-live-pulse" />
+              <span className="hidden sm:inline font-bold text-sky-600 dark:text-sky-400">Online</span>
             </div>
           </div>
         </div>
@@ -228,7 +228,7 @@ export default function App() {
                   ['4. Verdict & Handoff', 'Issues automated resolution (AUTO_RESOLVE, CONFIRM, or ESCALATE with ready brief).'],
                 ].map(([step, desc], i) => (
                   <div key={i} className="flex items-start gap-3.5 pt-0.5">
-                    <div className="w-6 h-6 rounded-lg bg-amber-dim border border-amber/40 flex items-center justify-center text-xs font-bold text-amber shrink-0 mt-0.5 shadow-xs">
+                    <div className="w-6 h-6 rounded-lg bg-red-dim border border-amber/40 flex items-center justify-center text-xs font-bold text-amber shrink-0 mt-0.5 shadow-xs">
                       {i + 1}
                     </div>
                     <div>
@@ -304,7 +304,7 @@ export default function App() {
                 <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
                 {/* Standby badge */}
-                <div className="w-20 h-20 rounded-2xl bg-amber-dim border border-amber/40 flex items-center justify-center mb-5 shadow-sm ring-4 ring-amber-dim/50 p-3.5">
+                <div className="w-20 h-20 rounded-2xl bg-red-dim border border-amber/40 flex items-center justify-center mb-5 shadow-sm ring-4 ring-red-dim/50 p-3.5">
                   <img src="/favicon.png" alt="CLARION" className="w-12 h-12 object-contain" />
                 </div>
 

@@ -9,7 +9,7 @@ import { goTo } from '../auth/nav';
 const inr = (n) => `₹${Number(n || 0).toLocaleString('en-IN')}`;
 
 const OK = 'text-verified border-verified/40 bg-verified-dim';
-const WARN = 'text-amber border-amber/40 bg-amber-dim';
+const WARN = 'text-amber border-amber/40 bg-red-dim';
 const BAD = 'text-alert border-alert/40 bg-alert-dim';
 const NEUTRAL = 'text-muted border-border-strong bg-ink-lighter';
 const STATUS = {
@@ -246,7 +246,7 @@ export default function ComplaintWorkspacePage({ complaintId }) {
         {expired && (
           <div className="rounded-xl border border-primary/40 bg-primary/10 p-4 flex flex-wrap items-center justify-between gap-3">
             <div><div className="font-bold text-sm">Your admin session has expired</div><div className="text-xs text-muted">Sign in again and you will return to complaint #{complaintId}.</div></div>
-            <button type="button" onClick={signInAgain} className="bg-primary hover:bg-[#265B55] text-white font-bold text-xs px-4 py-2 rounded-lg cursor-pointer neon-glow-teal">Sign in again</button>
+            <button type="button" onClick={signInAgain} className="bg-primary hover:bg-[#001F4D] text-white font-bold text-xs px-4 py-2 rounded-lg cursor-pointer neon-glow-teal">Sign in again</button>
           </div>
         )}
         {loading && !detail && <p className="text-sm text-muted font-semibold">Loading complaint #{complaintId}…</p>}
@@ -317,7 +317,7 @@ export default function ComplaintWorkspacePage({ complaintId }) {
             {!inv && ['registered', 'human_review', 'needs_info', 'investigated'].includes(c.status) && (
               <Box title="Investigation">
                 <p className="text-sm text-muted mb-3 font-medium">This complaint has not been investigated yet.</p>
-                <button type="button" onClick={() => runInvestigation(false)} disabled={running} className="bg-primary hover:bg-[#265B55] text-white font-bold text-sm px-5 py-2.5 rounded-lg cursor-pointer disabled:opacity-50 neon-glow-teal">
+                <button type="button" onClick={() => runInvestigation(false)} disabled={running} className="bg-primary hover:bg-[#001F4D] text-white font-bold text-sm px-5 py-2.5 rounded-lg cursor-pointer disabled:opacity-50 neon-glow-teal">
                   {running ? 'Investigating… this takes a few seconds' : 'Investigate now'}
                 </button>
                 {runError && <p className="mt-3 text-sm font-semibold text-alert">{runError} <button type="button" onClick={() => runInvestigation(false)} className="underline cursor-pointer">Retry</button></p>}

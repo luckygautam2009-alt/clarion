@@ -120,7 +120,7 @@ export default function VerifyModal({ data, onClose }) {
             )}
             <button
               type="submit"
-              className="w-full bg-primary hover:bg-[#265B55] text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-all cursor-pointer shadow-xs active:scale-[0.98] neon-glow-teal"
+              className="w-full bg-primary hover:bg-[#001F4D] text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-all cursor-pointer shadow-xs active:scale-[0.98] neon-glow-teal"
             >
               Confirm Manual Verification
             </button>
@@ -140,7 +140,7 @@ export default function VerifyModal({ data, onClose }) {
               <button
                 type="button"
                 onClick={() => downloadReport(reportText, data.customerId)}
-                className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-[#265B55] text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-all cursor-pointer shadow-xs active:scale-[0.98] neon-glow-teal"
+                className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-[#001F4D] text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-all cursor-pointer shadow-xs active:scale-[0.98] neon-glow-teal"
               >
                 <FileDown className="w-4 h-4" /> Download Report
               </button>

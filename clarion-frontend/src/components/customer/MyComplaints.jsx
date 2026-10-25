@@ -4,7 +4,7 @@ import { confirmProposal } from '../../api/client';
 
 const STYLE = {
   registered: { label: 'Registered', cls: 'text-muted border-border-strong bg-ink-lighter' },
-  in_review: { label: 'Under review', cls: 'text-amber border-amber/40 bg-amber-dim' },
+  in_review: { label: 'Under review', cls: 'text-amber border-amber/40 bg-red-dim' },
   awaiting_you: { label: 'Action needed', cls: 'text-alert border-alert/40 bg-alert-dim' },
   resolved: { label: 'Resolved', cls: 'text-verified border-verified/40 bg-verified-dim' },
   answered: { label: 'Answered', cls: 'text-muted border-border-strong bg-ink-lighter' },
@@ -70,7 +70,7 @@ export default function MyComplaints({ open, onClose, complaints, reload }) {
                   <p className="mt-3 text-sm text-paper">{c.detail}</p>
                 )}
                 {c.status === 'awaiting_you' && c.proposal && (
-                  <div className="mt-3 rounded-lg border border-amber/40 bg-amber-dim p-3">
+                  <div className="mt-3 rounded-lg border border-amber/40 bg-red-dim p-3">
                     <p className="text-sm text-paper mb-2.5">{c.proposal.summary}</p>
                     {msg[c.id] ? (
                       <p className="flex items-center gap-2 text-sm font-semibold text-verified"><Check className="w-4 h-4" /> {msg[c.id]}</p>

@@ -30,7 +30,7 @@ export default function Select({
         <select
           id={selectId}
           disabled={disabled}
-          className={`w-full appearance-none bg-ink-inset border rounded-xl pl-3.5 pr-10 py-2.5 text-sm font-semibold text-paper transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#2F6F68]/30 focus:border-[#2F6F68] disabled:opacity-55 disabled:cursor-not-allowed ${
+          className={`w-full appearance-none bg-ink-inset border rounded-xl pl-3.5 pr-10 py-2.5 text-sm font-semibold text-paper transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#002E6E]/30 focus:border-[#002E6E] disabled:opacity-55 disabled:cursor-not-allowed ${
             error
               ? 'border-alert/70 ring-1 ring-alert/30'
               : 'border-border-strong hover:border-muted/50'

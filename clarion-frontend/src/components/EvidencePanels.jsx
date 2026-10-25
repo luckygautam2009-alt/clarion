@@ -56,7 +56,7 @@ function ProposalCard({ proposal }) {
   }
 
   return (
-    <section className="md:col-span-2 rounded-xl border border-amber/40 bg-amber-dim p-5 fade-up">
+    <section className="md:col-span-2 rounded-xl border border-amber/40 bg-red-dim p-5 fade-up">
       <div className="text-xs font-bold uppercase tracking-wider text-amber mb-2">Your confirmation is needed</div>
       <p className="text-sm text-paper mb-4">{proposal.summary}</p>
       {st.done ? (

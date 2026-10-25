@@ -107,7 +107,7 @@ export default function ProfileSidebar({
         title: 'Customer Record',
         desc: `${c.name} (${c.id}) · ${c.tier?.toUpperCase() || 'STANDARD'}`,
         color: 'text-amber',
-        bg: 'bg-amber-dim border border-amber/20',
+        bg: 'bg-red-dim border border-amber/20',
       });
     }
 
@@ -118,8 +118,8 @@ export default function ProfileSidebar({
         icon: CreditCard,
         title: 'Payment Transaction',
         desc: `Order ${p.orderId} · ₹${Number(p.amount || 0).toLocaleString('en-IN')} (${p.gatewayStatus})`,
-        color: 'text-emerald-500',
-        bg: 'bg-emerald-500/10 border border-emerald-500/20',
+        color: 'text-sky-500',
+        bg: 'bg-sky-500/10 border border-sky-500/20',
       });
     }
 
@@ -155,8 +155,8 @@ export default function ProfileSidebar({
       {/* ── 1. Profile Avatar & Identity Card ── */}
       <div className="bg-white dark:bg-ink-light rounded-xl p-4 border border-border shadow-xs text-center relative">
         {/* Verified Status Pill */}
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-3">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 neon-live-pulse" />
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-sky-500 neon-live-pulse" />
           <CheckCircle2 className="w-3.5 h-3.5" />
           <span>Biometric Verified</span>
         </div>
@@ -181,7 +181,7 @@ export default function ProfileSidebar({
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-primary text-white border-2 border-ink flex items-center justify-center hover:bg-[#265B55] transition-colors cursor-pointer shadow-xs z-10 neon-glow-teal"
+            className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-primary text-white border-2 border-ink flex items-center justify-center hover:bg-[#001F4D] transition-colors cursor-pointer shadow-xs z-10 neon-glow-teal"
             title="Upload profile photo"
           >
             <Camera className="w-3 h-3" />
@@ -249,7 +249,7 @@ export default function ProfileSidebar({
           <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-muted">
             <Mail className="w-3 h-3 text-muted" />
             <span className="truncate max-w-[170px]">{verifiedEmail}</span>
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" title="Verified email" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-sky-500 shrink-0" title="Verified email" />
           </div>
         </div>
 
@@ -275,7 +275,7 @@ export default function ProfileSidebar({
           </div>
         </div>
         {copiedCode && (
-          <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold mt-1">
+          <div className="text-[10px] text-sky-600 dark:text-sky-400 font-bold mt-1">
             Copied Login ID to clipboard!
           </div>
         )}
@@ -297,8 +297,8 @@ export default function ProfileSidebar({
               </p>
             </div>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 neon-live-pulse" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-500 neon-live-pulse" />
             <span>Active</span>
           </div>
         </div>
@@ -307,7 +307,7 @@ export default function ProfileSidebar({
         <div className="space-y-1.5 bg-ink-inset p-2.5 rounded-lg border border-border text-xs">
           <div className="flex items-center justify-between">
             <span className="text-muted font-bold text-[11px]">Match Score:</span>
-            <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400 text-xs">
+            <span className="font-mono font-bold text-sky-600 dark:text-sky-400 text-xs">
               {verifyResult?.confidence
                 ? `${Math.round(verifyResult.confidence * 100)}% Matched`
                 : verifyResult?.matchScore
@@ -330,7 +330,7 @@ export default function ProfileSidebar({
           <button
             type="button"
             onClick={onOpenScanner}
-            className="w-full bg-primary hover:bg-[#265B55] text-white font-bold px-3 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal active:scale-[0.98]"
+            className="w-full bg-primary hover:bg-[#001F4D] text-white font-bold px-3 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal active:scale-[0.98]"
           >
             <Camera className="w-3.5 h-3.5" />
             <span>Scan / Re-verify ID Card</span>
@@ -384,14 +384,14 @@ export default function ProfileSidebar({
             type="button"
             onClick={handleUploadReference}
             disabled={!refFile}
-            className="w-full bg-primary hover:bg-[#265B55] text-white font-bold px-3 py-2 rounded-lg text-xs disabled:opacity-40 transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal"
+            className="w-full bg-primary hover:bg-[#001F4D] text-white font-bold px-3 py-2 rounded-lg text-xs disabled:opacity-40 transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal"
           >
             <FileCheck className="w-3.5 h-3.5" />
             <span>Save Reference Card</span>
           </button>
 
           {refMsg && (
-            <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold flex items-center gap-1.5">
+            <div className="p-2 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-600 dark:text-sky-400 text-[11px] font-bold flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
               <span className="truncate">{refMsg}</span>
             </div>
@@ -406,7 +406,7 @@ export default function ProfileSidebar({
             <ShieldCheck className="w-3.5 h-3.5 text-verified" />
             <span>Live Database Records</span>
           </div>
-          <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+          <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
             Active
           </span>
         </div>

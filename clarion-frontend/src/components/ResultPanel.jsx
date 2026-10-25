@@ -23,7 +23,7 @@ const DECISION_CONFIG = {
     icon: AlertTriangle,
     border: '#D97706',
     bg: 'rgba(217, 119, 6, 0.12)',
-    pill: 'bg-amber-dim border-amber/40 text-amber font-bold',
+    pill: 'bg-red-dim border-amber/40 text-amber font-bold',
     glow: '0 0 0 1px rgba(217, 119, 6, 0.3), 0 8px 30px rgba(217, 119, 6, 0.12)',
   },
   NEEDS_INFO: {
@@ -71,7 +71,7 @@ function sentimentColor(sentiment) {
 // ── Evidence tag ───────────────────────────────────────────────────────────────
 function EvidenceTag({ label }) {
   return (
-    <span className="inline-flex items-center gap-1 text-xs bg-amber-dim text-amber border border-amber/30 rounded-md px-2.5 py-1 font-semibold shadow-xs">
+    <span className="inline-flex items-center gap-1 text-xs bg-red-dim text-amber border border-amber/30 rounded-md px-2.5 py-1 font-semibold shadow-xs">
       {label}
     </span>
   );
@@ -105,7 +105,7 @@ function InvestigationSummary({ investigation }) {
       {/* Focus order */}
       {focusOrder ? (
         <div className="flex items-start gap-3.5 bg-ink-lighter rounded-xl p-4 border border-border-strong shadow-xs">
-          <div className="w-9 h-9 rounded-lg bg-amber-dim border border-amber/30 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-9 h-9 rounded-lg bg-red-dim border border-amber/30 flex items-center justify-center shrink-0 mt-0.5">
             <ShoppingBag className="w-4 h-4 text-amber" />
           </div>
           <div className="min-w-0 flex-1">
@@ -117,7 +117,7 @@ function InvestigationSummary({ investigation }) {
             </div>
             <div className="flex flex-wrap items-center gap-2 mt-2">
               {focusOrder.status && (
-                <span className="text-xs bg-amber-dim text-amber border border-amber/30 rounded-md px-2 py-0.5 font-bold uppercase tracking-wider">
+                <span className="text-xs bg-red-dim text-amber border border-amber/30 rounded-md px-2 py-0.5 font-bold uppercase tracking-wider">
                   {focusOrder.status}
                 </span>
               )}
@@ -157,7 +157,7 @@ function InvestigationSummary({ investigation }) {
           </div>
         )}
         {focusRefunds.length > 0 && (
-          <div className="flex items-center gap-1.5 text-amber bg-amber-dim border border-amber/30 px-3 py-1.5 rounded-lg">
+          <div className="flex items-center gap-1.5 text-amber bg-red-dim border border-amber/30 px-3 py-1.5 rounded-lg">
             <TrendingUp className="w-3.5 h-3.5 text-amber" />
             <span>{focusRefunds.length} refund record{focusRefunds.length !== 1 ? 's' : ''}</span>
           </div>
@@ -348,7 +348,7 @@ export default function ResultPanel({ data }) {
 
             <div className="flex flex-wrap gap-2.5 items-center">
               {rootCause?.matchedPolicy && (
-                <span className="text-xs bg-amber-dim text-amber border border-amber/30 rounded-md px-3 py-1 font-bold uppercase tracking-wide">
+                <span className="text-xs bg-red-dim text-amber border border-amber/30 rounded-md px-3 py-1 font-bold uppercase tracking-wide">
                   Policy: {rootCause.matchedPolicy}
                 </span>
               )}
@@ -478,7 +478,7 @@ export default function ResultPanel({ data }) {
               )}
               {handoff.agentSummary?.recommendedAction && (
                 <p className="text-base text-paper leading-relaxed bg-ink-light/80 p-3 rounded-lg border border-alert/20">
-                  <span className="font-bold text-amber-light">Recommended Action: </span>
+                  <span className="font-bold text-red-light">Recommended Action: </span>
                   {handoff.agentSummary.recommendedAction}
                 </p>
               )}

@@ -51,8 +51,8 @@ export default function LeftNav({ activeTable, setActiveTable, data, badges = {}
                 key={item.id}
                 type="button"
                 onClick={() => setActiveTable(item.id)}
-                className={`w-full group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition-all duration-150 cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-[#2F6F68] focus-visible:outline-offset-1 ${isActive
-                    ? 'bg-[#3B6260] text-white font-bold border border-[#2F6F68]/70 neon-edge-teal shadow-[0_0_12px_rgba(47,111,104,0.35)]'
+                className={`w-full group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition-all duration-150 cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-[#002E6E] focus-visible:outline-offset-1 ${isActive
+                    ? 'bg-[#0A4AA0] text-white font-bold border border-[#002E6E]/70 neon-edge-teal shadow-[0_0_12px_rgba(0,186,242,0.35)]'
                     : 'text-paper/85 hover:text-paper hover:bg-ink-lighter font-semibold border border-transparent'
                   }`}
               >
@@ -83,11 +83,11 @@ export default function LeftNav({ activeTable, setActiveTable, data, badges = {}
       <div className="space-y-2.5 pt-3 border-t border-border">
         {/* System Online Card */}
         <div className="bg-ink-inset rounded-xl p-2.5 border border-border flex items-center gap-2.5 shadow-2xs">
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 neon-live-pulse shrink-0" />
+          <div className="w-2.5 h-2.5 rounded-full bg-sky-500 neon-live-pulse shrink-0" />
           <div className="min-w-0 flex-1">
             <div className="text-xs font-bold text-paper leading-tight flex items-center justify-between">
               <span>System Online</span>
-              <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase">Live</span>
+              <span className="text-[10px] font-mono text-sky-600 dark:text-sky-400 font-bold uppercase">Live</span>
             </div>
             <div className="text-xs text-muted font-medium truncate mt-0.5">Database synchronized</div>
           </div>

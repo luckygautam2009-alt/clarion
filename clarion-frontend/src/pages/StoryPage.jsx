@@ -84,7 +84,7 @@ const DECISION_PATHS = [
     badge: 'Customer Choice',
     color: 'amber',
     border: 'border-amber',
-    bg: 'bg-amber-dim',
+    bg: 'bg-red-dim',
     text: 'text-amber',
     icon: AlertTriangle,
     rule: 'Moderate Confidence (70–84%) OR Category requiring user election',
@@ -173,7 +173,7 @@ export default function StoryPage({ onNavigateHome }) {
             className="flex items-center gap-3.5 group cursor-pointer text-left"
             title="Return to CLARION Live App"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-dim border border-amber/40 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform overflow-hidden p-1.5">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-dim border border-amber/40 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform overflow-hidden p-1.5">
               <img src="/favicon.png" alt="CLARION Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex items-center gap-2.5">
@@ -199,7 +199,7 @@ export default function StoryPage({ onNavigateHome }) {
             >
               {theme === 'dark' ? (
                 <>
-                  <Sun className="w-4 h-4 text-amber-light" />
+                  <Sun className="w-4 h-4 text-red-light" />
                   <span className="hidden sm:inline">Light</span>
                 </>
               ) : (
@@ -214,7 +214,7 @@ export default function StoryPage({ onNavigateHome }) {
             <button
               type="button"
               onClick={onNavigateHome}
-              className="flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-amber hover:bg-amber-light text-ink font-bold text-xs sm:text-sm transition-all duration-150 cursor-pointer shadow-xs hover:shadow-sm active:scale-[0.98]"
+              className="flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-xl bg-amber hover:bg-red-light text-ink font-bold text-xs sm:text-sm transition-all duration-150 cursor-pointer shadow-xs hover:shadow-sm active:scale-[0.98]"
             >
               <span>Launch App</span>
               <ArrowRight className="w-4 h-4" />
@@ -234,7 +234,7 @@ export default function StoryPage({ onNavigateHome }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-6 shadow-xs"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-6 shadow-xs"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber animate-spin-slow" />
             <span>Autonomous AI Complaint Investigation Engine</span>
@@ -280,7 +280,7 @@ export default function StoryPage({ onNavigateHome }) {
             </div>
 
             <div className="p-3.5 rounded-xl bg-ink-light border border-border shadow-xs flex items-center gap-3 text-left">
-              <div className="w-9 h-9 rounded-lg bg-amber-dim flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-lg bg-red-dim flex items-center justify-center shrink-0">
                 <Cpu className="w-5 h-5 text-amber" />
               </div>
               <div>
@@ -325,7 +325,7 @@ export default function StoryPage({ onNavigateHome }) {
               transition={{ duration: 0.6 }}
               className="lg:col-span-5 space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider">
                 Step 01
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-paper">
@@ -445,7 +445,7 @@ export default function StoryPage({ onNavigateHome }) {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-4"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-4"
             >
               Step 02
             </motion.div>
@@ -487,7 +487,7 @@ export default function StoryPage({ onNavigateHome }) {
                 </span>
               </div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-amber-dim border border-amber/30 flex items-center justify-center text-amber">
+                <div className="w-10 h-10 rounded-xl bg-red-dim border border-amber/30 flex items-center justify-center text-amber">
                   <CreditCard className="w-5 h-5" />
                 </div>
                 <div>
@@ -517,7 +517,7 @@ export default function StoryPage({ onNavigateHome }) {
                 </span>
               </div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-amber-dim border border-amber/30 flex items-center justify-center text-amber">
+                <div className="w-10 h-10 rounded-xl bg-red-dim border border-amber/30 flex items-center justify-center text-amber">
                   <Zap className="w-5 h-5" />
                 </div>
                 <div>
@@ -572,12 +572,12 @@ export default function StoryPage({ onNavigateHome }) {
                 <span className="text-xs font-semibold text-muted uppercase tracking-wider">
                   Urgency Metric
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-dim text-amber border border-amber/30">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-dim text-amber border border-amber/30">
                   Priority 3/3
                 </span>
               </div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-amber-dim border border-amber/30 flex items-center justify-center text-amber">
+                <div className="w-10 h-10 rounded-xl bg-red-dim border border-amber/30 flex items-center justify-center text-amber">
                   <AlertCircle className="w-5 h-5" />
                 </div>
                 <div>
@@ -642,7 +642,7 @@ export default function StoryPage({ onNavigateHome }) {
               transition={{ duration: 0.6 }}
               className="lg:col-span-5 space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider">
                 Step 03
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-paper">
@@ -715,7 +715,7 @@ export default function StoryPage({ onNavigateHome }) {
                 {/* Node 2: Payment Mismatch (FLAGGED) */}
                 <div className="p-3.5 rounded-xl bg-ink-inset border border-amber/50 border-l-4 border-l-amber shadow-sm flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-amber-dim text-amber flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-red-dim text-amber flex items-center justify-center shrink-0">
                       <CreditCard className="w-4 h-4" />
                     </div>
                     <div>
@@ -731,7 +731,7 @@ export default function StoryPage({ onNavigateHome }) {
                       </p>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-dim text-amber">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-red-dim text-amber">
                     flagged
                   </span>
                 </div>
@@ -765,7 +765,7 @@ export default function StoryPage({ onNavigateHome }) {
                 {/* Node 4: Policy Match */}
                 <div className="p-3.5 rounded-xl bg-ink-inset border border-border border-l-4 border-l-amber flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-amber-dim text-amber flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-red-dim text-amber flex items-center justify-center shrink-0">
                       <BookOpen className="w-4 h-4" />
                     </div>
                     <div>
@@ -773,7 +773,7 @@ export default function StoryPage({ onNavigateHome }) {
                       <p className="text-[11px] text-muted">Auto-refund on verified duplicate gateway capture</p>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-dim text-amber">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-red-dim text-amber">
                     matched
                   </span>
                 </div>
@@ -791,7 +791,7 @@ export default function StoryPage({ onNavigateHome }) {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-4"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-4"
             >
               Step 04
             </motion.div>
@@ -884,7 +884,7 @@ export default function StoryPage({ onNavigateHome }) {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-4"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider mb-4"
             >
               Step 05
             </motion.div>
@@ -910,7 +910,7 @@ export default function StoryPage({ onNavigateHome }) {
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="mt-6 p-4 rounded-xl bg-amber-dim border-2 border-amber/40 text-left sm:text-center max-w-2xl mx-auto shadow-sm"
+              className="mt-6 p-4 rounded-xl bg-red-dim border-2 border-amber/40 text-left sm:text-center max-w-2xl mx-auto shadow-sm"
             >
               <div className="flex items-center justify-center gap-2 text-xs font-bold text-amber uppercase tracking-wider mb-1">
                 <Scale className="w-4 h-4 text-amber" />
@@ -983,7 +983,7 @@ export default function StoryPage({ onNavigateHome }) {
               transition={{ duration: 0.6 }}
               className="lg:col-span-5 space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-dim border border-amber/30 text-amber text-xs font-bold uppercase tracking-wider">
                 Step 06
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-paper">
@@ -1003,7 +1003,7 @@ export default function StoryPage({ onNavigateHome }) {
                   type="button"
                   onClick={handleSimulateScan}
                   disabled={scanState === 'scanning'}
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber hover:bg-amber-light text-ink font-bold text-xs sm:text-sm transition-all cursor-pointer shadow-xs flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber hover:bg-red-light text-ink font-bold text-xs sm:text-sm transition-all cursor-pointer shadow-xs flex items-center justify-center gap-2"
                 >
                   <ScanLine className="w-4 h-4" />
                   <span>{scanState === 'verified' ? 'Re-scan ID Simulation' : 'Simulate Live ID Card Scan'}</span>
@@ -1065,7 +1065,7 @@ export default function StoryPage({ onNavigateHome }) {
                         <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-amber" />
 
                         {/* Animated scanline */}
-                        <div className="absolute left-0 right-0 h-1 bg-amber shadow-[0_0_12px_2px_rgba(217,119,6,0.8)] scanline" />
+                        <div className="absolute left-0 right-0 h-1 bg-amber shadow-[0_0_12px_2px_rgba(217, 119, 6,0.8)] scanline" />
 
                         <div className="text-center space-y-2">
                           <p className="text-xs font-bold text-amber tracking-wider uppercase animate-pulse">
@@ -1154,7 +1154,7 @@ export default function StoryPage({ onNavigateHome }) {
             <button
               type="button"
               onClick={onNavigateHome}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-amber hover:bg-amber-light text-ink font-bold text-base transition-all cursor-pointer shadow-lg hover:shadow-xl active:scale-[0.98] flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-amber hover:bg-red-light text-ink font-bold text-base transition-all cursor-pointer shadow-lg hover:shadow-xl active:scale-[0.98] flex items-center justify-center gap-2"
             >
               <span>Try It Yourself — Open Live Demo</span>
               <ArrowRight className="w-5 h-5" />

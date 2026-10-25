@@ -35,7 +35,7 @@ export default function Input({
         <input
           id={inputId}
           disabled={disabled}
-          className={`w-full bg-ink-inset border rounded-xl py-2.5 text-sm font-semibold text-paper placeholder:text-muted/70 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#2F6F68]/30 focus:border-[#2F6F68] focus:shadow-[0_0_12px_rgba(47,111,104,0.22)] disabled:opacity-55 disabled:cursor-not-allowed ${
+          className={`w-full bg-ink-inset border rounded-xl py-2.5 text-sm font-semibold text-paper placeholder:text-muted/70 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#002E6E]/30 focus:border-[#002E6E] focus:shadow-[0_0_12px_rgba(0,186,242,0.22)] disabled:opacity-55 disabled:cursor-not-allowed ${
             Icon ? 'pl-10' : 'pl-3.5'
           } ${rightElement ? 'pr-11' : 'pr-3.5'} ${
             error

@@ -120,7 +120,7 @@ export default function NotificationBell() {
                 key={n.id}
                 onClick={() => read(n)}
                 className={`group px-4.5 py-3.5 border-b border-border/60 last:border-0 cursor-pointer hover:bg-ink-lighter/70 transition-colors ${
-                  n.readAt ? 'opacity-65' : 'bg-amber-dim/20'
+                  n.readAt ? 'opacity-65' : 'bg-red-dim/20'
                 }`}
               >
                 <div className="flex items-start gap-3">

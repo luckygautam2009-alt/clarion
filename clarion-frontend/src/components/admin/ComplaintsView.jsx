@@ -4,7 +4,7 @@ import { getAdminComplaints, setAutoMode } from '../../api/client';
 import { goTo } from '../../auth/nav';
 
 const OK = 'text-verified border-verified/40 bg-verified-dim';
-const WARN = 'text-amber border-amber/40 bg-amber-dim';
+const WARN = 'text-amber border-amber/40 bg-red-dim';
 const BAD = 'text-alert border-alert/40 bg-alert-dim';
 const NEUTRAL = 'text-muted border-border-strong bg-ink-lighter';
 
@@ -122,7 +122,7 @@ export default function ComplaintsView() {
         <Card label="Total complaints" value={sum ? sum.total : '–'} />
         <Card label="Automatically resolved" value={sum ? sum.autoResolved : '–'} tone="text-verified" />
         <Card label="Pending human review" value={sum ? sum.pendingHumanReview : '–'} tone="text-alert" />
-        <Card label="Awaiting customer" value={sum ? sum.awaitingCustomerInfo : '–'} tone="text-[#C58B4B]" />
+        <Card label="Awaiting customer" value={sum ? sum.awaitingCustomerInfo : '–'} tone="text-[#00BAF2]" />
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -153,7 +153,7 @@ export default function ComplaintsView() {
               const st = STATUS[c.status] || [c.status, NEUTRAL];
               const review = ['human_review', 'investigated'].includes(c.status);
               return (
-                <tr key={c.id} onClick={() => open(c, rows)} className="hover:bg-[#2F6F68]/5 transition-colors cursor-pointer">
+                <tr key={c.id} onClick={() => open(c, rows)} className="hover:bg-[#002E6E]/5 transition-colors cursor-pointer">
                   <td className="px-3 py-2.5 font-mono font-bold text-primary dark:text-[#5F9E96]">#{c.id}</td>
                   <td className="px-3 py-2.5"><div className="font-bold text-paper">{c.customerName || '–'}</div><div className="font-mono text-[10px] text-muted">{c.customerId}</div></td>
                   <td className="px-3 py-2.5"><div className="font-mono font-semibold">{c.orderId || '–'}</div><div className="text-[10px] text-muted">{c.product || ''}</div></td>
@@ -165,7 +165,7 @@ export default function ComplaintsView() {
                   <td className="px-3 py-2.5 text-muted font-medium max-w-56 truncate" title={c.actionSummary || c.decisionReason || ''}>{c.actionSummary || c.infoRequest || c.decisionReason || '–'}</td>
                   <td className="px-3 py-2.5">
                     <button type="button" onClick={(e) => { e.stopPropagation(); open(c, rows); }}
-                      className={`text-[11px] font-bold px-3 py-1.5 rounded-lg cursor-pointer transition-all ${review ? 'bg-primary hover:bg-[#265B55] text-white neon-glow-teal shadow-xs' : 'border border-border-strong text-paper hover:bg-ink-inset'}`}>
+                      className={`text-[11px] font-bold px-3 py-1.5 rounded-lg cursor-pointer transition-all ${review ? 'bg-primary hover:bg-[#001F4D] text-white neon-glow-teal shadow-xs' : 'border border-border-strong text-paper hover:bg-ink-inset'}`}>
                       {review ? 'Review' : ['registered'].includes(c.status) ? 'Investigate' : 'View'}
                     </button>
                   </td>

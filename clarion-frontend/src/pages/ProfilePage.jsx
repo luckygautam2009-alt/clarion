@@ -41,9 +41,9 @@ import { getProductImage, PRODUCT_IMAGES } from '../data/productImages';
 const inr = (n) => `₹${Number(n || 0).toLocaleString('en-IN')}`;
 
 const STATUS_STYLE = {
-  in_transit: 'text-[#C58B4B] border-[#C58B4B]/40 bg-[#C58B4B]/10',
-  delivered: 'text-[#2E7D5B] border-[#2E7D5B]/40 bg-[#2E7D5B]/10',
-  pending: 'text-[#C4433A] border-[#C4433A]/40 bg-[#C4433A]/10',
+  in_transit: 'text-[#00BAF2] border-[#00BAF2]/40 bg-[#00BAF2]/10',
+  delivered: 'text-[#0B7FD1] border-[#0B7FD1]/40 bg-[#0B7FD1]/10',
+  pending: 'text-[#E5383B] border-[#E5383B]/40 bg-[#E5383B]/10',
   cancelled: 'text-muted border-border-strong bg-ink-lighter',
   returned: 'text-muted border-border-strong bg-ink-lighter',
 };
@@ -341,7 +341,7 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
               <span className="font-display text-xl font-extrabold tracking-tight text-paper">CLARION</span>
               <span className="text-border-strong text-base select-none">/</span>
               <span className="text-xs sm:text-sm text-paper-dim dark:text-muted font-bold">
-                {tab === 'orders' ? 'My Orders' : 'Customer Portal'}
+                {tab === 'orders' ? 'Transactions' : 'Customer Portal'}
               </span>
             </div>
           </div>
@@ -390,14 +390,14 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
                       className="w-full h-full rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full rounded-full bg-[#253B3D] text-white flex items-center justify-center text-2xl font-bold font-display">
+                    <div className="w-full h-full rounded-full bg-[#002E6E] text-white flex items-center justify-center text-2xl font-bold font-display">
                       {customer.name?.charAt(0).toUpperCase() || 'U'}
                     </div>
                   )}
 
                   <label
                     title="Change profile photo"
-                    className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#2F6F68] hover:bg-[#265B55] text-white flex items-center justify-center cursor-pointer shadow-md transition-colors border-2 border-white dark:border-ink-light"
+                    className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#002E6E] hover:bg-[#001F4D] text-white flex items-center justify-center cursor-pointer shadow-md transition-colors border-2 border-white dark:border-ink-light"
                   >
                     <Camera className="w-3.5 h-3.5" />
                     <input
@@ -538,7 +538,7 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
                 >
                   <div className="flex items-center gap-2.5">
                     <Package className="w-4 h-4 shrink-0" />
-                    <span>My Orders</span>
+                    <span>Transactions</span>
                   </div>
                   <span
                     className={`text-xs px-2 py-0.5 rounded-full font-bold ${
@@ -628,7 +628,7 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-border">
                   <div>
                     <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-paper">
-                      My Orders
+                      Transactions
                     </h1>
                     <p className="text-sm text-muted mt-1 font-medium">
                       Track delivery estimates, courier status, payment details, and get live help.
@@ -639,7 +639,7 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
                     <button
                       type="button"
                       onClick={() => goTo('/store')}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-[#265B55] transition-all cursor-pointer shadow-xs neon-glow-teal active:scale-[0.98]"
+                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-[#001F4D] transition-all cursor-pointer shadow-xs neon-glow-teal active:scale-[0.98]"
                     >
                       <Package className="w-3.5 h-3.5" />
                       <span>Browse Products</span>
@@ -754,7 +754,7 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
                       <button
                         type="button"
                         onClick={() => goTo('/store')}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary hover:bg-[#265B55] text-white text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs neon-glow-teal"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary hover:bg-[#001F4D] text-white text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs neon-glow-teal"
                       >
                         <Package className="w-4 h-4" />
                         <span>Go to Store</span>
@@ -1007,7 +1007,7 @@ export default function ProfilePage({ customer: initialCustomer, onLogout, initi
                   <button
                     type="button"
                     onClick={() => goTo('/complaints')}
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-[#265B55] transition-all cursor-pointer shadow-xs neon-glow-teal"
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-[#001F4D] transition-all cursor-pointer shadow-xs neon-glow-teal"
                   >
                     <span>Full Complaints Tracker</span>
                     <ExternalLink className="w-3.5 h-3.5" />

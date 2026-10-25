@@ -326,7 +326,7 @@ export default function IDScanner({ name, email, adminPassword, onVerified, onCa
               ))}
 
               {phase === 'idle' && (
-                <div className="absolute left-0 right-0 h-0.5 bg-primary/90 shadow-[0_0_12px_2px_rgba(47,111,104,0.6)] scanline" />
+                <div className="absolute left-0 right-0 h-0.5 bg-primary/90 shadow-[0_0_12px_2px_rgba(0,186,242,0.6)] scanline" />
               )}
 
               {isBusy && (
@@ -396,7 +396,7 @@ export default function IDScanner({ name, email, adminPassword, onVerified, onCa
                 id="btn-capture-verify"
                 disabled={isBusy || cameraStatus !== 'CAMERA_READY'}
                 onClick={handleCapture}
-                className="w-full bg-primary hover:bg-[#265B55] text-white font-bold px-4 py-2.5 rounded-lg text-xs disabled:opacity-50 transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal active:scale-[0.98]"
+                className="w-full bg-primary hover:bg-[#001F4D] text-white font-bold px-4 py-2.5 rounded-lg text-xs disabled:opacity-50 transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal active:scale-[0.98]"
               >
                 <ScanLine className="w-3.5 h-3.5" /> Capture & Verify ID
               </button>
@@ -406,7 +406,7 @@ export default function IDScanner({ name, email, adminPassword, onVerified, onCa
                 id="btn-upload-photo"
                 disabled={isBusy}
                 onClick={() => fileInputRef.current && fileInputRef.current.click()}
-                className="w-full flex items-center justify-center gap-1.5 text-xs font-bold text-primary hover:text-[#265B55] disabled:opacity-50 cursor-pointer py-1.5 transition-colors"
+                className="w-full flex items-center justify-center gap-1.5 text-xs font-bold text-primary hover:text-[#001F4D] disabled:opacity-50 cursor-pointer py-1.5 transition-colors"
               >
                 <Upload className="w-3.5 h-3.5" /> Upload photo instead
               </button>
@@ -430,7 +430,7 @@ export default function IDScanner({ name, email, adminPassword, onVerified, onCa
                 type="button"
                 id="btn-retry-verify"
                 onClick={handleRetry}
-                className="w-full bg-primary hover:bg-[#265B55] text-white font-bold px-3 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal"
+                className="w-full bg-primary hover:bg-[#001F4D] text-white font-bold px-3 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-xs flex items-center justify-center gap-1.5 neon-glow-teal"
               >
                 <RotateCcw className="w-3.5 h-3.5" /> Try Again
               </button>

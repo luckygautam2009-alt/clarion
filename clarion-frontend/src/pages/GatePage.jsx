@@ -19,7 +19,7 @@ export default function GatePage() {
       <header className="border-b border-border backdrop-blur-md sticky top-0 z-40 transition-colors" style={{ background: 'var(--header-glass)' }}>
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-dim border border-amber/40 flex items-center justify-center p-1.5 overflow-hidden shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-red-dim border border-amber/40 flex items-center justify-center p-1.5 overflow-hidden shadow-xs">
               <img src="/favicon.png" alt="CLARION" className="w-full h-full object-contain" />
             </div>
             <span className="font-display text-2xl font-bold tracking-tight text-paper">CLARION</span>
@@ -27,7 +27,7 @@ export default function GatePage() {
           <button
             type="button"
             onClick={() => goTo('/story')}
-            className="flex items-center gap-2 text-sm font-semibold text-amber hover:text-amber-light cursor-pointer px-3.5 py-2 rounded-xl bg-amber-dim border border-amber/30 transition-colors shadow-2xs"
+            className="flex items-center gap-2 text-sm font-semibold text-amber hover:text-red-light cursor-pointer px-3.5 py-2 rounded-xl bg-red-dim border border-amber/30 transition-colors shadow-2xs"
           >
             <Sparkles className="w-4 h-4 text-amber" />
             <span>See how it works</span>
@@ -61,7 +61,7 @@ export default function GatePage() {
           </section>
 
           <section className={card}>
-            <div className="w-12 h-12 rounded-xl bg-amber-dim border border-amber/40 flex items-center justify-center mb-5 shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-red-dim border border-amber/40 flex items-center justify-center mb-5 shadow-xs">
               <ShieldCheck className="w-6 h-6 text-amber" />
             </div>
             <h2 className="font-display text-2xl font-bold text-paper tracking-tight">I'm an admin</h2>

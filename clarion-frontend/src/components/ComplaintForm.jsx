@@ -5,7 +5,7 @@ import { ChevronDown, Plus, X, User, Mail, Shield, Sparkles, Camera } from 'luci
 
 const TIER_COLORS = {
   platinum: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30',
-  gold: 'text-amber bg-amber-dim border-amber/30',
+  gold: 'text-amber bg-red-dim border-amber/30',
   silver: 'text-muted bg-ink-lighter border-border-strong',
 };
 
@@ -170,7 +170,7 @@ export default function ComplaintForm({ onSubmit, loading, prefill }) {
           </div>
         )}
         {!authCustomer && requireAuth && (
-          <div className="rounded-xl border border-amber/40 bg-amber-dim p-4 text-sm">
+          <div className="rounded-xl border border-amber/40 bg-red-dim p-4 text-sm">
             <div className="font-bold text-paper mb-1">Sign in to file a complaint</div>
             <p className="text-xs text-muted mb-3">Your orders and payments are linked to your account.</p>
             <button type="button" onClick={() => goTo('/login')} className="bg-amber text-ink font-bold text-xs px-4 py-2 rounded-lg cursor-pointer">Sign in / Create account</button>
@@ -222,7 +222,7 @@ export default function ComplaintForm({ onSubmit, loading, prefill }) {
           <button
             type="button"
             onClick={() => { setShowAdd((v) => !v); setFormError(null); }}
-            className="mt-3.5 flex items-center gap-1.5 text-xs font-bold text-amber hover:text-amber-light transition-colors cursor-pointer"
+            className="mt-3.5 flex items-center gap-1.5 text-xs font-bold text-amber hover:text-red-light transition-colors cursor-pointer"
           >
             {showAdd ? (
               <><X className="w-4 h-4" /> Cancel adding customer</>
@@ -292,7 +292,7 @@ export default function ComplaintForm({ onSubmit, loading, prefill }) {
             <button
               type="button"
               onClick={() => setShowOrder((v) => !v)}
-              className="text-xs font-semibold text-amber hover:text-amber-light cursor-pointer"
+              className="text-xs font-semibold text-amber hover:text-red-light cursor-pointer"
             >
               {showOrder ? '- Hide order details' : '+ Seed an order (optional, for instant investigation)'}
             </button>
@@ -356,7 +356,7 @@ export default function ComplaintForm({ onSubmit, loading, prefill }) {
               id="save-customer-btn"
               disabled={saving}
               onClick={handleAddCustomer}
-              className="w-full bg-primary hover:bg-[#265B55] text-white font-bold px-4 py-2.5 rounded-lg text-sm
+              className="w-full bg-primary hover:bg-[#001F4D] text-white font-bold px-4 py-2.5 rounded-lg text-sm
                          disabled:opacity-50 active:scale-[0.98]
                          transition-all duration-150 cursor-pointer shadow-sm neon-glow-teal"
             >
@@ -459,7 +459,7 @@ export default function ComplaintForm({ onSubmit, loading, prefill }) {
           className="w-full relative overflow-hidden font-extrabold text-base rounded-xl py-4
                      transition-all duration-200 active:scale-[0.98] cursor-pointer
                      disabled:cursor-not-allowed
-                     bg-primary text-white hover:bg-[#265B55] shadow-md hover:shadow-lg neon-glow-teal
+                     bg-primary text-white hover:bg-[#001F4D] shadow-md hover:shadow-lg neon-glow-teal
                      disabled:bg-ink-lighter disabled:text-muted disabled:shadow-none"
         >
           {loading ? (
