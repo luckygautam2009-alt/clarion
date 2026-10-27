@@ -98,7 +98,7 @@ function decide(complaintText, analysis, rootCause, investigation, risk, photo) 
       return escalate('Photo appears to be a stock image, screenshot, or edited/generated image; manual authenticity review required.');
     }
     if (matchedPolicy === 'POLICY8') {
-      return escalate('Wrong-item claims must be compared against warehouse dispatch logs (POLICY8); a photo alone cannot prove what was shipped. Photo analysis attached for the agent.');
+      return escalate('Wrong-beneficiary claims need transaction log review and a request to the recipient bank (POLICY8); a screenshot alone cannot prove where the money went. Proof analysis attached for the agent.');
     }
     if (v.productMatchesOrder === 'no') {
       return escalate(`Photo shows an item that does not match the ordered product (${ord.product}); manual review required.`);
@@ -117,7 +117,7 @@ function decide(complaintText, analysis, rootCause, investigation, risk, photo) 
     if (strong && matchedPolicy === 'POLICY6') {
       return {
         decision: 'AUTO_RESOLVE',
-        reasoning: `Photo evidence verified: product matches order ${ord.id}, damage visible and consistent with the complaint (vision confidence ${v.confidence}%), image never used before, order value within cap, customer risk acceptable. Policy POLICY6 satisfied.`,
+        reasoning: `Payment proof verified: screenshot matches transaction ${ord.id} and is consistent with the complaint (vision confidence ${v.confidence}%), image never used before, amount within cap, customer risk acceptable. Policy POLICY6 satisfied.`,
         confidence,
         sentimentNote: note,
       };
@@ -205,7 +205,7 @@ function decide(complaintText, analysis, rootCause, investigation, risk, photo) 
     // Return window
     if (!investigation.focusOrder || investigation.focusOrder.status !== 'delivered') {
       evidenceSatisfied = false;
-      policyFailureReason = 'Order is not delivered or return already requested.';
+      policyFailureReason = 'Payment is not completed or a dispute was already raised.';
     }
   }
 
@@ -217,7 +217,7 @@ function decide(complaintText, analysis, rootCause, investigation, risk, photo) 
     if (delayed) {
       return {
         decision: 'CUSTOMER_CONFIRM',
-        reasoning: `Order ${o.id} is past its expected delivery date (ETA ${o.estimatedDelivery || 'unknown'}, courier status: ${o.courierStatus || 'in transit'}). Eligible under POLICY11 for a shipping credit or expedited redelivery; the customer chooses the remedy.`,
+        reasoning: `Transaction ${o.id} is past its expected settlement date (ETA ${o.estimatedDelivery || 'unknown'}, bank status: ${o.courierStatus || 'in transit'}). Eligible under POLICY11 for a priority follow-up or a refund of the amount; the customer chooses the remedy.`,
         confidence,
         sentimentNote: `Note: Decision based on verified delivery records, not sentiment (${analysis.sentiment}).`,
       };

@@ -11,7 +11,7 @@ const VALID_TOP_LEVEL_INTENTS = [
 ];
 
 const DEVANAGARI_REGEX = /[\u0900-\u097F]/;
-const HINGLISH_MARKERS = /\b(bhai|yaar|nahi|nahin|gya|gyi|gaya|gaye|baar|kat|dekh|lo|mera|meri|mere|kisi|abhi|tak|aaya|aayi|aaye|mila|karne|karo|paise|rupaye|khud|ho\s*gya|dikha\s*raha|bekaar|chahiye|wala)\b/i;
+const HINGLISH_MARKERS = /\b(bhai|yaar|nahi|nahin|gya|gyi|gaya|gaye|baar|kat|dekh|lo|mera|meri|mere|kisi|abhi|tak|aaya|aayi|aaye|mila|karne|karo|paise|paisa|rupaye|gayab|bheja|bheje|wapas|hua|hui|khud|ho\s*gya|dikha\s*raha|bekaar|chahiye|wala)\b/i;
 
 function convertDevanagariDigits(str) {
   if (!str) return str;
@@ -87,7 +87,7 @@ function fallbackSemanticUnderstanding(complaintText) {
   }
   // 3. Order status / delay / in transit
   else if (
-    /(?:kya\s*status|status\s*kya|where\s*is|kab\s*aayega|kab\s*tak|late|delay|in\s*transit|track|tracking)\b/i.test(text) &&
+    /(?:kya\s*status|status\s*kya|where\s*is|kab\s*aayega|kab\s*tak|late|delay|in\s*transit|stuck|atak|atka|track|tracking)\b/i.test(text) &&
     !/(?:delivered|mila\s*nahi|not\s*received)/i.test(text)
   ) {
     intent = 'order_status/delay';
@@ -96,7 +96,7 @@ function fallbackSemanticUnderstanding(complaintText) {
   }
   // 4. Delivered but not received / product issues
   else if (
-    /(?:delivered|डिलीवर्ड|डिलीवर).*(?:nahi|not|never|mila|मिला|नहीं)|not received|never received|parcel.*not.*got|delivered dikha raha hai but mila nahi|पार्सल नहीं मिला|नहीं मिला/i.test(text)
+    /(?:delivered|डिलीवर्ड|डिलीवर).*(?:nahi|not|never|mila|मिला|नहीं)|merchant\s*ko.*nahi|receiver\s*ko.*nahi|beneficiary\s*ko.*nahi|not received|never received|parcel.*not.*got|delivered dikha raha hai but mila nahi|पार्सल नहीं मिला|नहीं मिला/i.test(text)
   ) {
     intent = 'product_issue';
     subIntent = 'delivered_not_received';
@@ -113,7 +113,7 @@ function fallbackSemanticUnderstanding(complaintText) {
     confidence = 82;
   }
   // 5. Refund / return
-  else if (/refund|रिफंड|wapas.*paise|money back|return/i.test(text)) {
+  else if (/refund|रिफंड|wapas.*paise|paise\s*wapas|paisa\s*wapas|reversal|money back|return/i.test(text)) {
     intent = 'refund/return';
     subIntent = 'refund_status_delay';
     urgency = 'high';
@@ -121,7 +121,7 @@ function fallbackSemanticUnderstanding(complaintText) {
   }
   // 6. Duplicate payment / billing / deduction
   else if (
-    /twice|duplicate|double|2\s*baar|do\s*baar|दो\s*बार/i.test(text) &&
+    /twice|duplicate|double|2\s*baar|do\s*baar|dobara|dubara|two\s*times|दो\s*बार/i.test(text) &&
     /pay|charged|debit|kat|कट गया|कट गयी|कट गए|पेमेंट|deduct/i.test(text)
   ) {
     intent = 'payment/billing';
@@ -130,7 +130,7 @@ function fallbackSemanticUnderstanding(complaintText) {
     urgency = 'high';
     confidence = 90;
   } else if (
-    /kat\s*g|कट गया|कट गए|debit.*failed|money deducted|amount deducted|order nahi bana|order not placed|ऑर्डर कन्फर्म नहीं|deduct/i.test(text) &&
+    /kat\s*g|कट गया|कट गए|debit.*failed|money deducted|amount deducted|order nahi bana|order not placed|payment\s*fail|transaction\s*fail|txn\s*fail|upi\s*fail|paise\s*cut|paisa\s*cut|amount\s*cut|recharge\s*nahi|ऑर्डर कन्फर्म नहीं|deduct/i.test(text) &&
     /pay|कट|debit|paise|पैसे|खाते/i.test(text)
   ) {
     intent = 'payment/billing';
@@ -226,9 +226,9 @@ The customer complaint may be in English, Hindi (Devanagari), Hinglish (Hindi wr
 
 Analyze the complaint and classify it into one of these strict top-level intents:
 - "payment/billing": billing, duplicate charges, amount debited but order failed, unauthorized charges
-- "refund/return": refund delayed, refund status, return refund pending, return request
+- "refund/return": refund delayed, refund status, refund pending at the bank, merchant refund request
 - "cancellation": order cancellation query or cancellation status
-- "product_issue": damaged product, poor quality, wrong product, delivered but not received
+- "product_issue": payment screenshot or proof issue, money sent to a wrong UPI ID or account, receiver says the money did not arrive
 - "order_status/delay": tracking status, where is my order, shipping delay
 - "security/unauthorized_activity": suspicious login, hacked account, unauthorized device/location access
 - "other/ambiguous": unclear, unsupported, or out-of-scope text (e.g. sponsorship, greetings)

@@ -18,11 +18,11 @@ function nextNum(table, prefix, min) {
   return max + 1;
 }
 
-const gwRef = () => `gw_${crypto.randomBytes(5).toString('hex')}`;
+const gwRef = () => `upi_${crypto.randomBytes(5).toString('hex')}`;
 
 function placeOrder({ customerId, productId, quantity, paymentMode }) {
   const product = CATALOG.find((p) => p.id === productId);
-  if (!product) return { status: 400, error: 'Unknown product' };
+  if (!product) return { status: 400, error: 'Unknown service' };
   const qty = Number(quantity) || 1;
   if (!Number.isInteger(qty) || qty < 1 || qty > 5) return { status: 400, error: 'quantity must be 1-5' };
   if (!MODES.includes(paymentMode)) return { status: 400, error: 'Invalid payment mode' };
@@ -39,8 +39,8 @@ function placeOrder({ customerId, productId, quantity, paymentMode }) {
     status: glitch ? 'pending' : 'in_transit',
     deliveredAt: null, deliveredOn: null, returnRequested: 0,
     cancelledAt: null, cancellationReason: null, returnStatus: null, returnedAt: null,
-    courierTracking: glitch ? null : `TRK${crypto.randomInt(100000000, 999999999)}`,
-    courierStatus: glitch ? null : 'dispatched',
+    courierTracking: glitch ? null : `UTR${crypto.randomInt(100000000000, 999999999999)}`,
+    courierStatus: glitch ? null : 'processing',
     estimatedDelivery: glitch ? null : day(3),
   };
 
@@ -89,17 +89,17 @@ function listOrders(customerId) {
 
 function simulate({ orderId, customerId, action }) {
   const o = db.prepare('SELECT * FROM orders WHERE id=?').get(orderId);
-  if (!o || o.customerId !== customerId) return { status: 404, error: 'Order not found' };
+  if (!o || o.customerId !== customerId) return { status: 404, error: 'Transaction not found' };
   const now = new Date().toISOString();
   if (action === 'deliver') {
-    if (o.status !== 'in_transit') return { status: 409, error: 'Only in-transit orders can be marked delivered' };
+    if (o.status !== 'in_transit') return { status: 409, error: 'Only processing payments can be marked successful' };
     db.prepare("UPDATE orders SET status='delivered', deliveredAt=?, deliveredOn=?, courierStatus='delivered' WHERE id=?").run(now, now.slice(0, 10), orderId);
   } else if (action === 'delay') {
-    if (o.status !== 'in_transit') return { status: 409, error: 'Only in-transit orders can be delayed' };
+    if (o.status !== 'in_transit') return { status: 409, error: 'Only processing payments can be delayed' };
     db.prepare("UPDATE orders SET estimatedDelivery=?, courierStatus='delayed' WHERE id=?").run(day(-3), orderId);
   } else if (action === 'cancel') {
-    if (!['in_transit', 'pending'].includes(o.status)) return { status: 409, error: 'Only pending or in-transit orders can be cancelled' };
-    db.prepare("UPDATE orders SET status='cancelled', cancelledAt=?, cancellationReason='Customer requested cancellation before delivery' WHERE id=?").run(now, orderId);
+    if (!['in_transit', 'pending'].includes(o.status)) return { status: 409, error: 'Only pending or processing payments can be cancelled' };
+    db.prepare("UPDATE orders SET status='cancelled', cancelledAt=?, cancellationReason='Customer requested cancellation before completion' WHERE id=?").run(now, orderId);
   } else {
     return { status: 400, error: 'action must be deliver, delay or cancel' };
   }

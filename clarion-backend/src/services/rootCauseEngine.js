@@ -145,7 +145,7 @@ function buildDeterministicRootCause(investigation, analysis) {
   if (policy.id === 'POLICY3') {
     if (evalResult.satisfied) {
       return {
-        rootCause: `Order ${focusOrder.id} was delivered on ${focusOrder.deliveredAt || focusOrder.deliveredOn} and is within the 10-day return/exchange window (${evalResult.details.daysDiff} days elapsed).`,
+        rootCause: `Payment ${focusOrder.id} was completed on ${focusOrder.deliveredAt || focusOrder.deliveredOn} and is within the 10-day dispute window (${evalResult.details.daysDiff} days elapsed).`,
         evidenceUsed: evalResult.evidenceUsed,
         matchedPolicy: policy.id,
         confidence: 89,
@@ -154,7 +154,7 @@ function buildDeterministicRootCause(investigation, analysis) {
       };
     }
     return {
-      rootCause: `Return window expired or order ineligible for return under policy: ${evalResult.reason || 'Not delivered or outside return window'}.`,
+      rootCause: `Dispute window expired or payment not eligible for a dispute under policy: ${evalResult.reason || 'Not completed or outside the dispute window'}.`,
       evidenceUsed: [evalResult.reason || 'Exceeds return timeframe'],
       matchedPolicy: policy.id,
       confidence: 65,
@@ -169,7 +169,7 @@ function buildDeterministicRootCause(investigation, analysis) {
       const reason = evalResult.details.cancellationReason;
       const reasonText = reason
         ? `Cancellation reason recorded in system: "${reason}".`
-        : 'Order was cancelled, but the specific cancellation reason was not recorded in order history.';
+        : 'Payment was cancelled, but the specific cancellation reason was not recorded in transaction history.';
       return {
         rootCause: `Order ${focusOrder.id} was cancelled on ${focusOrder.cancelledAt ? focusOrder.cancelledAt.slice(0, 10) : 'prior date'}. ${reasonText}`,
         evidenceUsed: evalResult.evidenceUsed,
@@ -184,7 +184,7 @@ function buildDeterministicRootCause(investigation, analysis) {
       evidenceUsed: ['Order status in database is active, not cancelled'],
       matchedPolicy: null,
       confidence: 25,
-      confidenceReasoning: 'Order record does not indicate cancellation.',
+      confidenceReasoning: 'Transaction record does not indicate cancellation.',
       source: 'evidence',
     };
   }
@@ -193,7 +193,7 @@ function buildDeterministicRootCause(investigation, analysis) {
   if (policy.id === 'POLICY11') {
     if (evalResult.satisfied) {
       return {
-        rootCause: `Order ${focusOrder.id} is currently in transit with logistics carrier (carrier tracking: ${focusOrder.courierTracking || 'N/A'}, status: ${focusOrder.courierStatus || 'in transit'}, estimated delivery: ${focusOrder.estimatedDelivery || 'in 2-3 business days'}).`,
+        rootCause: `Transaction ${focusOrder.id} is still processing with the bank or operator (UTR / reference: ${focusOrder.courierTracking || 'N/A'}, status: ${focusOrder.courierStatus || 'in transit'}, expected settlement: ${focusOrder.estimatedDelivery || 'in 2-3 working days'}).`,
         evidenceUsed: evalResult.evidenceUsed,
         matchedPolicy: policy.id,
         confidence: 90,
@@ -216,11 +216,11 @@ function buildDeterministicRootCause(investigation, analysis) {
     if (evalResult.satisfied) {
       let specificCause = '';
       if (policy.id === 'POLICY10') {
-        specificCause = `Tracking shows parcel delivered for Order ${focusOrder.id} (courier: ${focusOrder.courierTracking || 'partner'}), but customer reports non-receipt. Requires courier proof-of-delivery (POD) investigation.`;
+        specificCause = `Records show the payment completed for transaction ${focusOrder.id} (channel: ${focusOrder.courierTracking || 'partner'}), but the customer says the receiver did not get the money. Requires bank proof (UTR) verification.`;
       } else if (policy.id === 'POLICY6') {
         specificCause = `Customer reported damaged product for Order ${focusOrder.id}. Per policy, physical damage claims rely on customer claims and require photo verification before resolution.`;
       } else {
-        specificCause = `Customer reported wrong product delivered for Order ${focusOrder.id}. Requires warehouse dispatch log comparison and return pickup verification.`;
+        specificCause = `Customer reported money sent to a wrong beneficiary for transaction ${focusOrder.id}. Requires transaction log review and contact with the recipient bank.`;
       }
       return {
         rootCause: specificCause,

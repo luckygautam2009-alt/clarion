@@ -15,7 +15,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
     case 'POLICY7': {
       // Duplicate payment refund
       if (!focusOrder || focusOrder.customerId !== customer.id) {
-        return { satisfied: false, reason: 'No verified order belonging to customer' };
+        return { satisfied: false, reason: 'No verified transaction belonging to customer' };
       }
       const successfulPayments = (focusPayments || []).filter(
         (p) => (p.status === 'success' || p.gatewayStatus === 'success') && p.customerId === customer.id
@@ -24,7 +24,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
         return {
           satisfied: true,
           evidenceUsed: [
-            `Verified order ${focusOrder.id} for customer ${customer.id}`,
+            `Verified transaction ${focusOrder.id} for customer ${customer.id}`,
             ...successfulPayments.map((p) => `Payment ${p.id} gateway=${p.gatewayStatus || p.status}/local=${p.localStatus}`),
           ],
           details: {
@@ -34,7 +34,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
           },
         };
       }
-      return { satisfied: false, reason: 'Less than two successful payments recorded for this order' };
+      return { satisfied: false, reason: 'Less than two successful payments recorded for this transaction' };
     }
 
     case 'POLICY1': {
@@ -46,7 +46,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
         return {
           satisfied: true,
           evidenceUsed: deductedFailed.map(
-            (p) => `Payment ${p.id} (Order ${p.orderId}) debited by gateway=${p.gatewayStatus} but recorded locally as ${p.localStatus}`
+            (p) => `Payment ${p.id} (Transaction ${p.orderId}) debited by gateway=${p.gatewayStatus} but recorded locally as ${p.localStatus}`
           ),
           details: { payments: deductedFailed.map((p) => p.id) },
         };
@@ -65,7 +65,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
         return {
           satisfied: true,
           evidenceUsed: [
-            `Refund ${matchingRefund.id} exists for order ${matchingRefund.orderId} with status=pending`,
+            `Refund ${matchingRefund.id} exists for transaction ${matchingRefund.orderId} with status=pending`,
             `Initiated at ${matchingRefund.initiatedAt} (gateway ref: ${matchingRefund.gatewayRef || 'N/A'})`,
           ],
           details: { refund: matchingRefund },
@@ -81,14 +81,14 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
         return {
           satisfied: true,
           evidenceUsed: [
-            `Order ${focusOrder.id} status is returned (returnStatus=${focusOrder.returnStatus || 'returned'})`,
-            `Returned at ${focusOrder.returnedAt || 'verified timestamp'}`,
+            `Transaction ${focusOrder.id} status is returned (returnStatus=${focusOrder.returnStatus || 'returned'})`,
+            `Refund initiated at ${focusOrder.returnedAt || 'verified timestamp'}`,
             custRefunds.length === 0 ? 'No prior refund record found in system' : `Existing refund status: ${custRefunds[0].status}`,
           ],
           details: { orderId: focusOrder.id, refundExists: custRefunds.length > 0 },
         };
       }
-      return { satisfied: false, reason: 'No verified returned order found awaiting refund' };
+      return { satisfied: false, reason: 'No verified transaction found awaiting refund' };
     }
 
     case 'POLICY3': {
@@ -103,17 +103,17 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
             return {
               satisfied: true,
               evidenceUsed: [
-                `Order ${focusOrder.id} delivered on ${deliveryDateStr}`,
-                `Delivery is within return window of ${policy.eligibleWithinDays || 10} days (${isNaN(daysDiff) ? 0 : Math.floor(daysDiff)} days elapsed)`,
-                'No return previously requested',
+                `Transaction ${focusOrder.id} completed on ${deliveryDateStr}`,
+                `Payment is within the dispute window of ${policy.eligibleWithinDays || 10} days (${isNaN(daysDiff) ? 0 : Math.floor(daysDiff)} days elapsed)`,
+                'No dispute previously raised',
               ],
               details: { orderId: focusOrder.id, daysDiff: isNaN(daysDiff) ? 0 : Math.floor(daysDiff) },
             };
           }
-          return { satisfied: false, reason: `Delivery date (${deliveryDateStr}) exceeds ${policy.eligibleWithinDays || 10} day return window` };
+          return { satisfied: false, reason: `Delivery date (${deliveryDateStr}) exceeds ${policy.eligibleWithinDays || 10} day dispute window` };
         }
       }
-      return { satisfied: false, reason: 'Order is not in delivered status or return already requested' };
+      return { satisfied: false, reason: 'Payment is not completed or a dispute was already raised' };
     }
 
     case 'POLICY5': {
@@ -121,7 +121,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
       if (focusOrder && focusOrder.status === 'cancelled') {
         const reasonRecorded = focusOrder.cancellationReason || null;
         const evidenceUsed = [
-          `Order ${focusOrder.id} status is cancelled`,
+          `Transaction ${focusOrder.id} status is cancelled`,
           `Cancelled at ${focusOrder.cancelledAt || 'recorded timestamp'}`,
         ];
         if (reasonRecorded) {
@@ -135,7 +135,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
           details: { orderId: focusOrder.id, cancellationReason: reasonRecorded },
         };
       }
-      return { satisfied: false, reason: 'Order is not marked as cancelled in records' };
+      return { satisfied: false, reason: 'Payment is not marked as cancelled in records' };
     }
 
     case 'POLICY11': {
@@ -144,9 +144,9 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
         return {
           satisfied: true,
           evidenceUsed: [
-            `Verified order ${focusOrder.id} status is "${focusOrder.status}"`,
-            focusOrder.courierTracking ? `Carrier tracking: ${focusOrder.courierTracking} (${focusOrder.courierStatus || 'in transit'})` : 'Carrier tracking active',
-            focusOrder.estimatedDelivery ? `Estimated delivery date: ${focusOrder.estimatedDelivery}` : 'Standard shipping window',
+            `Verified transaction ${focusOrder.id} status is "${focusOrder.status}"`,
+            focusOrder.courierTracking ? `UTR / reference: ${focusOrder.courierTracking} (${focusOrder.courierStatus || 'in transit'})` : 'Bank tracking active',
+            focusOrder.estimatedDelivery ? `Expected settlement date: ${focusOrder.estimatedDelivery}` : 'Standard settlement window',
           ],
           details: {
             orderId: focusOrder.id,
@@ -156,7 +156,7 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
           },
         };
       }
-      return { satisfied: false, reason: 'Order is not in transit' };
+      return { satisfied: false, reason: 'Transaction is not processing' };
     }
 
     case 'POLICY6': // Damaged product claim (escalation required)
@@ -166,15 +166,15 @@ function evaluatePolicyConditions(policy, investigation, analysis) {
         return {
           satisfied: true,
           evidenceUsed: [
-            `Verified order ${focusOrder.id} exists for customer ${customer.id}`,
-            `Current order status is "${focusOrder.status}"`,
-            focusOrder.courierTracking ? `Carrier tracking: ${focusOrder.courierTracking} (status: ${focusOrder.courierStatus || 'dispatched'})` : 'Standard dispatch verified',
-            'Customer claim requires physical/carrier verification prior to resolution',
+            `Verified transaction ${focusOrder.id} exists for customer ${customer.id}`,
+            `Current transaction status is "${focusOrder.status}"`,
+            focusOrder.courierTracking ? `UTR / reference: ${focusOrder.courierTracking} (status: ${focusOrder.courierStatus || 'dispatched'})` : 'Standard processing verified',
+            'Customer claim requires bank or UTR verification before resolution',
           ],
           details: { orderId: focusOrder.id, policyRequiresEscalation: true },
         };
       }
-      return { satisfied: false, reason: 'No verified order found for product issue claim' };
+      return { satisfied: false, reason: 'No verified transaction found for this claim' };
     }
 
     case 'POLICY9': {
