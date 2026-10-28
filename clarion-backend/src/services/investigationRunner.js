@@ -14,6 +14,13 @@ const ORDER_INTENTS = ['payment/billing', 'payment', 'cancellation', 'refund/ret
 
 // When the only blocker is MISSING information the customer can supply, ask for it instead of burdening a human
 function refineDecision({ decision, analysis, rootCause, investigation, photo }) {
+  if (analysis.subIntent === 'out_of_scope') {
+    return {
+      ...decision, decision: 'NEEDS_INFO',
+      reasoning: 'This complaint is about goods or delivery, which is outside Clarion payment support. No refund or ticket was created.',
+      infoRequest: 'Clarion handles payment problems only (failed, double or pending payments, refunds, wrong transfers). For a product or delivery issue, please contact the merchant directly. If money was debited wrongly, tell us the transaction ID.',
+    };
+  }
   // The customer never named an order and the engine only guessed one: ask, do not act on a guess
   if (!investigation.orderHintDetected && investigation.focusOrder && ['AUTO_RESOLVE', 'CUSTOMER_CONFIRM'].includes(decision.decision) && ORDER_INTENTS.includes(analysis.intent)) {
     return {
@@ -27,15 +34,15 @@ function refineDecision({ decision, analysis, rootCause, investigation, photo })
   if (noOrderMentioned && (ORDER_INTENTS.includes(analysis.intent) || analysis.intent === 'other/ambiguous')) {
     return {
       ...decision, decision: 'NEEDS_INFO',
-      reasoning: 'The complaint does not say which order it is about, so nothing can be verified yet.',
-      infoRequest: 'Please tell us which order this is about (the order ID, for example ORDER1001) and describe what went wrong.',
+      reasoning: 'The complaint does not say which payment it is about, so nothing can be verified yet.',
+      infoRequest: 'Please tell us which payment this is about (the transaction ID, for example ORDER1001) and describe what went wrong.',
     };
   }
   if (['POLICY6', 'POLICY8'].includes(rootCause.matchedPolicy) && investigation.orderVerified && !(photo && photo.provided)) {
     return {
       ...decision, decision: 'NEEDS_INFO',
-      reasoning: 'A photo of the item is needed to verify its condition before any resolution.',
-      infoRequest: 'Please send a clear photo of the item showing the problem (and the shipping label if possible).',
+      reasoning: 'A payment screenshot or bank statement is needed to verify this claim before any resolution.',
+      infoRequest: 'Please attach a screenshot of the payment or your bank statement showing this transaction.',
     };
   }
   return decision;

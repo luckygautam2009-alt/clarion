@@ -93,7 +93,7 @@ function investigate(customerId, complaintText, entityHints = []) {
       focusPayments = payments.filter((p) => p.orderId === focusOrder.id);
       focusRefunds = refunds.filter((r) => r.orderId === focusOrder.id);
     } else if (orders.length > 1) {
-      const relevantOrder = orders.find((o) => o.status === 'returned' || o.status === 'cancelled' || o.status === 'in_transit' || o.returnRequested);
+      const relevantOrder = [...orders].reverse().find((o) => ['returned', 'cancelled', 'in_transit', 'pending', 'failed'].includes(o.status) || o.returnRequested);
       if (relevantOrder) {
         focusOrder = relevantOrder;
         focusPayments = payments.filter((p) => p.orderId === focusOrder.id);

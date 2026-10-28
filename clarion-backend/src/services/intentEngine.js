@@ -85,32 +85,43 @@ function fallbackSemanticUnderstanding(complaintText) {
     subIntent = 'order_cancellation';
     confidence = 85;
   }
-  // 3. Order status / delay / in transit
+  // 3. Wrong beneficiary: money sent to a wrong UPI ID or account (internal id wrong_product maps to POLICY8)
   else if (
-    /(?:kya\s*status|status\s*kya|where\s*is|kab\s*aayega|kab\s*tak|late|delay|in\s*transit|stuck|atak|atka|track|tracking)\b/i.test(text) &&
-    !/(?:delivered|mila\s*nahi|not\s*received)/i.test(text)
+    /(wrong|galat|incorrect)\s*(upi|vpa|number|no\.?|account|person|beneficiary|id|jagah|banda|bande)|(upi|paise|paisa|payment|money|amount|transfer).*(wrong|galat)|(wrong|galat).*(upi|paise|paisa|transfer|bheje|bhej)/i.test(text)
   ) {
-    intent = 'order_status/delay';
-    subIntent = 'order_status_tracking';
+    intent = 'product_issue';
+    subIntent = 'wrong_product';
+    urgency = 'high';
     confidence = 85;
   }
-  // 4. Delivered but not received / product issues
+  // 4. Receiver says the money did not arrive (POLICY10)
   else if (
-    /(?:delivered|डिलीवर्ड|डिलीवर).*(?:nahi|not|never|mila|मिला|नहीं)|merchant\s*ko.*nahi|receiver\s*ko.*nahi|beneficiary\s*ko.*nahi|not received|never received|parcel.*not.*got|delivered dikha raha hai but mila nahi|पार्सल नहीं मिला|नहीं मिला/i.test(text)
+    /(merchant|shopkeeper|dukan|receiver|beneficiary|samne\s*wale|dost|friend)[^.]{0,40}(nahi|not|never)\s*(mila|mile|received|aaya|aaye|got)|(not|never)\s*(received|credited)|credited\s*nahi/i.test(text)
   ) {
     intent = 'product_issue';
     subIntent = 'delivered_not_received';
     sentiment = 'angry';
     urgency = 'high';
     confidence = 85;
-  } else if (/damage|broken|kharab|tuta|खराब|टूटा|defective|faulty|quality.*bekaar|bekaar/i.test(text)) {
-    intent = 'product_issue';
-    subIntent = 'damaged_product';
-    confidence = 82;
-  } else if (/wrong|galat|different item|गलत/i.test(text)) {
-    intent = 'product_issue';
-    subIntent = 'wrong_product';
-    confidence = 82;
+  }
+  // 5. Pending / processing / status of a payment (POLICY11)
+  else if (
+    /(?:kya\s*status|status\s*kya|where\s*is|kab\s*aayega|kab\s*tak|late|delay|in\s*transit|stuck|atak|atka|track|tracking|pending|processing|process\s*ho\s*raha|abhi\s*tak)\b/i.test(text) &&
+    !/(?:refund|wapas|reversal|money\s*back)/i.test(text) &&
+    !/(?:kat\s*g|deduct|debited)/i.test(text)
+  ) {
+    intent = 'order_status/delay';
+    subIntent = 'order_status_tracking';
+    confidence = 85;
+  }
+  // 6. Goods / delivery complaints are outside payment support
+  else if (
+    /damage|broken|kharab|tuta|tut\s*gaya|defective|faulty|wrong\s*item|different\s*item|courier|delivery|deliver|parcel|package|product|item|shipping|warehouse|exchange|replace|खराब|टूटा/i.test(text) &&
+    !/upi|payment|paise|paisa|debit|credited|transaction|txn|wallet|bank|utr|recharge|bill/i.test(text)
+  ) {
+    intent = 'other/ambiguous';
+    subIntent = 'out_of_scope';
+    confidence = 80;
   }
   // 5. Refund / return
   else if (/refund|रिफंड|wapas.*paise|paise\s*wapas|paisa\s*wapas|reversal|money back|return/i.test(text)) {
@@ -168,7 +179,7 @@ function validateAndFormatUnderstanding(raw, complaintText, source = 'ai') {
   // Normalize intent synonyms
   if (intent === 'payment' || intent === 'billing') intent = 'payment/billing';
   if (intent === 'refund' || intent === 'return') intent = 'refund/return';
-  if (intent === 'delivery' || intent === 'product_quality') intent = 'product_issue';
+  if (intent === 'delivery' || intent === 'product_quality') { intent = 'other/ambiguous'; raw = { ...raw, subIntent: 'out_of_scope' }; }
   if (intent === 'account') intent = 'security/unauthorized_activity';
 
   if (!VALID_TOP_LEVEL_INTENTS.includes(intent)) {
@@ -225,13 +236,13 @@ async function analyzeComplaint(complaintText) {
 The customer complaint may be in English, Hindi (Devanagari), Hinglish (Hindi written in Latin script), or mixed language. Text may contain typos, slang, missing punctuation, or colloquialisms.
 
 Analyze the complaint and classify it into one of these strict top-level intents:
-- "payment/billing": billing, duplicate charges, amount debited but order failed, unauthorized charges
-- "refund/return": refund delayed, refund status, refund pending at the bank, merchant refund request
-- "cancellation": order cancellation query or cancellation status
-- "product_issue": payment screenshot or proof issue, money sent to a wrong UPI ID or account, receiver says the money did not arrive
-- "order_status/delay": tracking status, where is my order, shipping delay
+- "payment/billing": duplicate or double debit, money debited but payment failed, recharge or bill payment not completed, unauthorized charges
+- "refund/return": refund pending or delayed, refund status of a payment
+- "cancellation": status or reason of a cancelled payment or booking
+- "product_issue": money sent to a wrong UPI ID or account, receiver says the money did not arrive, payment proof or screenshot disputes
+- "order_status/delay": a payment stuck in pending or processing, status of a payment
 - "security/unauthorized_activity": suspicious login, hacked account, unauthorized device/location access
-- "other/ambiguous": unclear, unsupported, or out-of-scope text (e.g. sponsorship, greetings)
+- "other/ambiguous": unclear text, greetings, or anything NOT about a payment (for example damaged goods, product delivery, courier). Use subIntent "out_of_scope" for goods or delivery complaints.
 
 Return ONLY a valid JSON object with this exact structure:
 {

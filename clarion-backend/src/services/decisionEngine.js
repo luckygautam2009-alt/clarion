@@ -74,13 +74,13 @@ function decide(complaintText, analysis, rootCause, investigation, risk, photo) 
 
     const isCarrierDispute = matchedPolicy === 'POLICY10' || subIntent === 'delivered_not_received';
     if (isCarrierDispute) {
-      return escalate('Carrier tracking marks delivery but customer disputes receipt. Requires logistics proof-of-delivery (POD) verification before financial resolution.');
+      return escalate('The transaction shows as successful but the receiver disputes receipt. Bank proof (UTR) must be obtained before any resolution.');
     }
     if (!photo || !photo.provided) {
-      return escalate('Product condition claims rely on unverified customer words and require photo or reverse pickup verification prior to refund. No photo was provided.');
+      return escalate('Payment-proof claims rely on unverified customer words and need a screenshot or bank statement before any refund. None was provided.');
     }
     if (!matchedPolicy) {
-      return escalate('Photo received, but no active policy matches this product complaint; requires human review.');
+      return escalate('Proof received, but no active policy matches this payment complaint; requires human review.');
     }
     const ord = investigation.focusOrder;
     if (!investigation.orderVerified || !ord || ord.customerId !== investigation.customer.id) {

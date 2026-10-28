@@ -197,16 +197,16 @@ function buildDeterministicRootCause(investigation, analysis) {
         evidenceUsed: evalResult.evidenceUsed,
         matchedPolicy: policy.id,
         confidence: 90,
-        confidenceReasoning: 'Verified live shipping and dispatch status in carrier records.',
+        confidenceReasoning: 'Verified live processing status in bank and NPCI records.',
         source: 'evidence',
       };
     }
     return {
-      rootCause: 'Unable to determine root cause from available customer data: Order is not in transit.',
-      evidenceUsed: ['Order is not in transit in database records'],
+      rootCause: 'Unable to determine root cause from available customer data: the transaction is not processing.',
+      evidenceUsed: ['Transaction is not in processing state in database records'],
       matchedPolicy: null,
       confidence: 25,
-      confidenceReasoning: 'No active shipment in transit.',
+      confidenceReasoning: 'No processing payment found.',
       source: 'evidence',
     };
   }
@@ -218,7 +218,7 @@ function buildDeterministicRootCause(investigation, analysis) {
       if (policy.id === 'POLICY10') {
         specificCause = `Records show the payment completed for transaction ${focusOrder.id} (channel: ${focusOrder.courierTracking || 'partner'}), but the customer says the receiver did not get the money. Requires bank proof (UTR) verification.`;
       } else if (policy.id === 'POLICY6') {
-        specificCause = `Customer reported damaged product for Order ${focusOrder.id}. Per policy, physical damage claims rely on customer claims and require photo verification before resolution.`;
+        specificCause = `Customer disputes transaction ${focusOrder.id}. Per policy, claims that depend on a screenshot or bank statement need proof verification before resolution.`;
       } else {
         specificCause = `Customer reported money sent to a wrong beneficiary for transaction ${focusOrder.id}. Requires transaction log review and contact with the recipient bank.`;
       }
@@ -227,7 +227,7 @@ function buildDeterministicRootCause(investigation, analysis) {
         evidenceUsed: evalResult.evidenceUsed,
         matchedPolicy: policy.id,
         confidence: 75,
-        confidenceReasoning: 'Customer claim requires physical or logistics partner verification prior to automated action.',
+        confidenceReasoning: 'Customer claim requires bank or recipient-bank verification prior to automated action.',
         source: 'evidence',
       };
     }

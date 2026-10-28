@@ -42,6 +42,7 @@ app.use('/api/complaints', complaintRoutes);
 app.use('/api/verify', verificationRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/shop', shopRoutes);
+app.use('/api', require('./routes/pay.routes'));
 app.use('/api/auth', authRoutes);
 app.use('/api/me', meRoutes);
 

@@ -114,6 +114,7 @@ function executeActions({ customerId, analysis, rootCause, decision, investigati
 
       if (spec) {
         result.refund = createRefund({ orderId: order.id, customerId, ...spec });
+        require('./refundService').scheduleSettle(result.refund.id);
         result.ticket = createTicket({
           customerId, category: categoryFor(intent), status: 'resolved',
           subject: `Auto-resolved: ${policy} | ${order.id}`,

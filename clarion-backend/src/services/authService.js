@@ -85,6 +85,7 @@ function signup({ name, email, password }) {
     db.prepare('INSERT INTO customer_auth (customerId, email, passwordHash, createdAt) VALUES (?,?,?,?)')
       .run(id, e, hashPassword(password), new Date().toISOString());
   })();
+  require('./walletService').ensureWallet(customer.id);
   return { status: 201, customer: publicCustomer(customer), ...issueSession(customer.id) };
 }
 
